@@ -2,6 +2,10 @@ package cse421.battleship.models;
 
 public interface Player {
     
-    public String getPlayerName();
+	/**
+	 * Retrieves the name of the Player.
+	 * @return the name of the Player.
+	 */
+    String getPlayerName();
 
 }

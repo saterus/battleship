@@ -2,13 +2,58 @@ package cse421.battleship.models;
 
 public interface BattleGrid {
 
-    public void setShipPos(Ship ship, int x, int y, boolean orient);
-    
-    public boolean shoot(int x, int y);
-    
-    public boolean isViewable(int x, int y);
-    
-    public boolean isShip(int x, int y);
-    
-    //public boolean isRevealed(int x, int y); Removed because it leaks information.
+	/**
+	 * Assigns positions in the grid to the specified Ship.
+	 * 
+	 * @param ship
+	 *            the Ship to place on the grid
+	 * @param x
+	 *            the x-coordinate of the position of the head of the Ship.
+	 * @param y
+	 *            the y-coordinate of the position of the head of the Ship.
+	 * @param orient
+	 *            the orientation of the Ship ({@code true} if oriented along
+	 *            the x-axis, and {@code false} if along the y).
+	 */
+	void setShipPos(Ship ship, int x, int y, boolean orient);
+
+	/**
+	 * Registers a shot at position x,y on the grid.
+	 * 
+	 * @param x
+	 *            the x-coordinate of the position to shoot.
+	 * @param y
+	 *            the y-coordinate of the position to shoot.
+	 * @return {@code true} if the shot hit a Ship, and {@code false} otherwise.
+	 */
+	boolean shoot(int x, int y);
+
+	/**
+	 * Determines whether a grid position is viewable. A grid position is
+	 * viewable if it has been shot.
+	 * 
+	 * @param x
+	 *            the x-coordinate of the position to check for visibility.
+	 * @param y
+	 *            the y-coordinate of the position to check for visibility.
+	 * @return {@code true} if the position is visible, and {@code false}
+	 *         otherwise.
+	 */
+	boolean isViewable(int x, int y);
+
+	/**
+	 * Determines whether a grid position is associated with a Ship.
+	 * 
+	 * @param x
+	 *            the x-coordinate of the position to check for a Ship.
+	 * @param y
+	 *            the y-coordinate of the position to check for a Ship.
+	 * @return {@code true} if the position is associated with a Ship, and
+	 *         {@code false} otherwise.
+	 */
+	boolean isShip(int x, int y);
+
+	// TODO remove this before submitting the project!
+	// public boolean isRevealed(int x, int y); Removed because it leaks
+	// information.
 }

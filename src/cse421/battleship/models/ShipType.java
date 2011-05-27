@@ -1,25 +1,65 @@
 package cse421.battleship.models;
 
 public enum ShipType {
-    
-    AIRCRAFT_CARRIER(5), BATTLESHIP(4), DESTROYER(3), SUBMARINE(3), PATROL_BOAT(2);
-    
-    private int length;
 
-    private ShipType(int l) {
-      length = l;
-    }
+	/**
+	 * Associate AIRCRAFT_CARRIER with a length of 5.
+	 */
+	AIRCRAFT_CARRIER(5),
 
-    public int length() {
-      return length;
-    }
-    
-    // TODO: Replace underscore with space, and capitalize all words.
-    @Override
-    public String toString() {
-        //only capitalize the first letter
-        String s = super.toString();
-        return s.substring(0, 1) + s.substring(1).toLowerCase();
-    }
+	/**
+	 * Associate BATTLESHIP with a length of 4.
+	 */
+	BATTLESHIP(4),
+
+	/**
+	 * Associate DESTROYER with a length of 3.
+	 */
+	DESTROYER(3),
+
+	/**
+	 * Associate SUBMARINE with a length of 3.
+	 */
+	SUBMARINE(3),
+
+	/**
+	 * Associate PATROL_BOAT with a length of 2.
+	 */
+	PATROL_BOAT(2);
+
+	/**
+	 * The length associated with the ShipType.
+	 */
+	private int length;
+
+	/**
+	 * Create a ShipType of length {@code length}.
+	 * 
+	 * @param length
+	 *            the length associated with the ShipType.
+	 */
+	private ShipType(int length) {
+		this.length = length;
+	}
+
+	/**
+	 * Retrieves the length associated with the ShipType.
+	 * 
+	 * @return the length associated with the ShipType.
+	 */
+	public int length() {
+		return length;
+	}
+
+	@Override
+	public String toString() {
+		String[] s = super.toString().split("_");
+		String name = s[0].substring(0, 1) + s[0].substring(1).toLowerCase();
+		if (s.length == 2) {
+			name = name + " " + s[1].substring(0, 1)
+					+ s[1].substring(1).toLowerCase();
+		}
+		return name;
+	}
 
 }
