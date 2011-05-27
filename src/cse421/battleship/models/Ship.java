@@ -6,8 +6,6 @@ public interface Ship {
     
     public void hit();
     
-    public String type();
-    
-    public int length();
+    public ShipType type();
     
 }
