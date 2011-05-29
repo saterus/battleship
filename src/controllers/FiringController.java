@@ -1,4 +1,4 @@
-package cse421.battleship.controllers;
+package controllers;
 
 public interface FiringController {
 

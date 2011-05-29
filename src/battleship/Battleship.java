@@ -1,6 +1,6 @@
-package cse421.battleship;
+package battleship;
 
-import cse421.battleship.models.ShipType;
+import models.ShipType;
 
 public class Battleship {
 

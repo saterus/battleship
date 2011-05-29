@@ -1,5 +1,10 @@
-package cse421.battleship.models;
+package models;
 
+/**
+ * An enumeration class defining possible ship types to be used with ShipImpl.
+ * 
+ * @author Group c421aa06
+ */
 public enum ShipType {
 
 	/**

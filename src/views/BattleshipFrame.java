@@ -1,4 +1,4 @@
-package cse421.battleship.views;
+package views;
 
 public class BattleshipFrame {
 

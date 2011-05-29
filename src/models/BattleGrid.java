@@ -1,4 +1,4 @@
-package cse421.battleship.models;
+package models;
 
 public interface BattleGrid {
 
