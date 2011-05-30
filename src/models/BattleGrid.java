@@ -1,5 +1,16 @@
 package models;
 
+// TODO add any constructors with @initially
+
+/**
+ * A gridmap for use in battleship. The user of this interface has control over
+ * grid size and how grid space is managed.
+ * 
+ * @mathmodel an double array of positions of the dimensions of the grid.
+ * @constraint all Ship objects placed on the grid must fit entirely within the
+ *             defined dimensions.
+ * @author Group c421aa06
+ */
 public interface BattleGrid {
 
 	/**
