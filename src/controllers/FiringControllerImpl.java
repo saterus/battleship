@@ -8,7 +8,7 @@ import models.BattleGrid;
  * @author Group c421aa06
  * 
  */
-public class FiringControllerImpl implements FiringController {
+public final class FiringControllerImpl implements FiringController {
 
     /**
      * The grid being shot at.

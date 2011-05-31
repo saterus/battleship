@@ -10,7 +10,7 @@ import models.Player;
  * @author Group c421aa06
  * 
  */
-public class WaitingControllerImpl implements WaitingController {
+public final class WaitingControllerImpl implements WaitingController {
 
     // TODO: Maybe add a player field to the BattleGrid, or vice versa to cut
     // down on redundant parameters here.
