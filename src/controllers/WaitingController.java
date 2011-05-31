@@ -12,8 +12,18 @@ package controllers;
 public interface WaitingController {
 
 	/**
-	 * Switches the game view between the two Players.
+	 * Switches the game view between the two Players during placement.
+	 * 
+	 * @return the new controller for placing the next player's pieces.
 	 */
-	void switchPlayer();
+	PlacementController switchPlacementPlayer();
+	
+	/**
+     * Switches the game view between the two Players during firing.
+     * 
+     * @return the new controller with the correct player attacking and defending.
+     */
+    FiringController switchFiringPlayer();
+
 
 }
