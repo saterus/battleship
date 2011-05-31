@@ -21,13 +21,6 @@ public final class ShipImpl implements Ship {
 	private ShipType type;
 
 	/**
-	 * Default constructor. Made private so it cannot be used.
-	 */
-	private ShipImpl() {
-
-	}
-
-	/**
 	 * Constructor which initializes a ship of the given type.
 	 * 
 	 * @param type
