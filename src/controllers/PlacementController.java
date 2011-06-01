@@ -55,4 +55,11 @@ public interface PlacementController {
 	 * Changes the orientation of the selected Ship.
 	 */
 	void rotateShip();
+
+	/**
+	 * Checks if all ships have been placed.
+	 * 
+	 * @return true if all Ships have been placed, false otherwise.
+	 */
+	boolean allPlaced();
 }

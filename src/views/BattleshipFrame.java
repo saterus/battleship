@@ -14,6 +14,11 @@ import controllers.WaitingControllerImpl;
 
 public class BattleshipFrame extends JFrame {
 
+	/**
+	 * The WaitingController for use with the battleship game.
+	 */
+	private WaitingController waiting;
+
 	public BattleshipFrame() {
 
 		BattleGrid gridA = new BattleGridImpl();
@@ -21,10 +26,7 @@ public class BattleshipFrame extends JFrame {
 		Player playerA = new PlayerImpl("Player 1");
 		Player playerB = new PlayerImpl("Player 2");
 
-		WaitingController waiting = new WaitingControllerImpl(playerB, gridB,
-				playerA, gridA);
-
-		PlacementController placing = waiting.switchPlacementPlayer();
+		waiting = new WaitingControllerImpl(playerB, gridB, playerA, gridA);
 
 		this.pack();
 		this.setTitle("Battleship!");
@@ -35,10 +37,11 @@ public class BattleshipFrame extends JFrame {
 	 * Creates a view for Ship placement.
 	 */
 	private void createPlacementView() {
+		PlacementController placing = waiting.switchPlacementPlayer();
 		JPanel content = new JPanel();
 		content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
-		content.add(new GridView());
-		content.add(new ShipTypeSelector());
+		content.add(new BattleGridView());
+		content.add(new ShipTypeSelector(placing));
 		this.setContentPane(content);
 	}
 }
