@@ -30,6 +30,7 @@ public class BattleshipFrame extends JFrame {
 
 		this.pack();
 		this.setTitle("Battleship!");
+		this.setSize(800, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

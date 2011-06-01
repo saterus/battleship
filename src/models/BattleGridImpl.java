@@ -38,7 +38,15 @@ public final class BattleGridImpl implements BattleGrid {
 	 */
 	
 	public BattleGridImpl() {
-		gridSpace = new boolean[BOARD_L][BOARD_L][1];
+		gridSpace = new boolean[BOARD_L][BOARD_L][2];
+//		for (int i = 0; i < BOARD_L; i++) {
+//			for(int j = 0; j < BOARD_L; j++) {
+//				gridSpace[i][j][0] = false;
+//				gridSpace[i][j][1] = false;
+//			}
+//		}
+		
+		
 	}
 
 	@Override
