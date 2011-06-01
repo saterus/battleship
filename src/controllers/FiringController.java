@@ -4,6 +4,10 @@ package controllers;
  * A controller for firing for use in battleship. The user of this interface has
  * control over what rules existing regarding shooting.
  * 
+ * @initially <br>
+ *            constructor(WaitingController waiting, BattleGrid target):
+ *            {@code ensures} the FiringController is associated with the
+ *            waiting and target.
  * @author Group c421aa06
  */
 public interface FiringController {

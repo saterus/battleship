@@ -7,9 +7,6 @@ package models;
  * @mathmodel a string.
  * @constraint the player's name is the string.
  * @initially <br>
- *            constructor(): {@code ensures} the player's name is set to
- *            "New Player".
- * @initially <br>
  *            constructor(String name): {@code ensures} the player's name is set
  *            to {@code name}.
  * @author Group c421aa06

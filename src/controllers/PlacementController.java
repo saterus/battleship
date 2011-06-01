@@ -7,6 +7,10 @@ import views.ShipTypeSelector;
  * A controller for Ship placement for use in battleship. The user of this
  * interface has control over what Ship placements are legal.
  * 
+ * @initially <br>
+ *            constructor(WaitingController waiting, BattleGrid target):
+ *            {@code ensures} the PlacementController is associated with the
+ *            waiting and target.
  * @author Group c421aa06
  */
 public interface PlacementController {

@@ -1,7 +1,5 @@
 package models;
 
-// TODO add any constructors with @initially
-
 /**
  * A gridmap for use in battleship. The user of this interface has control over
  * grid size and how grid space is managed.
@@ -9,6 +7,9 @@ package models;
  * @mathmodel an double array of positions of the dimensions of the grid.
  * @constraint all Ship objects placed on the grid must fit entirely within the
  *             defined dimensions.
+ * @initially <br>
+ *            constructor(): {@code ensures} all spaces of the grid are
+ *            initialized as empty and unshot.
  * @author Group c421aa06
  */
 public interface BattleGrid {
@@ -95,5 +96,25 @@ public interface BattleGrid {
 	 * @return the dimension of one side of the grid.
 	 */
 	int gridSize();
+	
+	/**
+	 * This will set the player as either active or inactive when playing separate turns.
+	 * 
+	 * @ensures The player's state = state
+	 * @param state
+	 * 		The state in which the player will assume, where
+	 * 			{@code true} = Active
+	 * 			{@code false} = Inactive
+	 */
+	void setPlayerState(boolean state);
+	
+	/**
+	 * Returns whether or not a player is active and taking their turn.
+	 * 
+	 * @return isActive
+	 * 			{@code true} = Active
+	 * 			{@code false} = Inactive
+	 */
+	boolean getPlayerState();
 
 }
