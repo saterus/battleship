@@ -11,14 +11,47 @@ import controllers.PlacementController;
 
 public class BattleGridSquare extends JPanel {
 
+	/**
+	 * The x-position of the grid square in the grid starting from the left.
+	 */
 	private final int x;
+
+	/**
+	 * The y-position of the grid square in the grid starting from the top.
+	 */
 	private final int y;
 
+	/**
+	 * Color of grid squares that have not been shot on the opponent's grid.
+	 */
 	private static final Color FOG = Color.LIGHT_GRAY;
+
+	/**
+	 * Color of grid squares that hold a Ship and have been shot.
+	 */
 	private static final Color HIT = Color.RED;
+
+	/**
+	 * Color of grid squares that have been shot and hold no Ship.
+	 */
 	private static final Color WATER = Color.BLUE;
+
+	/**
+	 * Color of grid squares that hold a Ship that have not been shot on the
+	 * player's own grid.
+	 */
 	private static final Color SHIP = Color.DARK_GRAY;
 
+	/**
+	 * Constructor that defines the position of the BattleGridSquare to be x,y.
+	 * 
+	 * @param x
+	 *            the x-coordinate of the BattleGridSquare, starting from the
+	 *            left.
+	 * @param y
+	 *            the y-coordinate of the BattleGridSquare, starting from the
+	 *            top.
+	 */
 	public BattleGridSquare(int x, int y) {
 		this.x = x;
 		this.y = y;
