@@ -16,6 +16,10 @@ public interface BattleGrid {
 	/**
 	 * Assigns positions in the grid to the specified Ship.
 	 * 
+	 * @requires 0 <= x <= 9 and 0 <= y <= 9
+	 * @ensures A ship is set within the given position assuming
+	 * 			no other ship occupies those spaces.
+	 * 
 	 * @param ship
 	 *            the Ship to place on the grid
 	 * @param x
@@ -25,11 +29,14 @@ public interface BattleGrid {
 	 * @param orient
 	 *            the orientation of the Ship ({@code true} if oriented along
 	 *            the x-axis, and {@code false} if along the y).
+	 *            
 	 */
 	void setShipPos(Ship ship, int x, int y, boolean orient);
 
 	/**
 	 * Registers a shot at position x,y on the grid.
+	 * 
+	 * @requires 0 <= x <= 9 and 0 <= y <= 9
 	 * 
 	 * @param x
 	 *            the x-coordinate of the position to shoot.
@@ -43,6 +50,8 @@ public interface BattleGrid {
 	 * Determines whether a grid position is viewable. A grid position is
 	 * viewable if it has been shot.
 	 * 
+	 * @requires 0 <= x <= 9 and 0 <= y <= 9
+	 * 
 	 * @param x
 	 *            the x-coordinate of the position to check for visibility.
 	 * @param y
@@ -54,6 +63,8 @@ public interface BattleGrid {
 
 	/**
 	 * Determines whether a grid position is associated with a Ship.
+	 * 
+	 * @requires 0 <= x <= 9 and 0 <= y <= 9
 	 * 
 	 * @param x
 	 *            the x-coordinate of the position to check for a Ship.
