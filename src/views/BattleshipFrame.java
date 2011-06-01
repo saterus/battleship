@@ -26,7 +26,7 @@ public class BattleshipFrame extends JFrame {
 		Player playerA = new PlayerImpl("Player 1");
 		Player playerB = new PlayerImpl("Player 2");
 
-		waiting = new WaitingControllerImpl(playerB, gridB, playerA, gridA);
+		waiting = new WaitingControllerImpl(this, playerB, gridB, playerA, gridA);
 
 		this.pack();
 		this.setTitle("Battleship!");
