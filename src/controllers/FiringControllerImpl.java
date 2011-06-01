@@ -14,6 +14,11 @@ public final class FiringControllerImpl implements FiringController {
      * The grid being shot at.
      */
     private BattleGrid target;
+    
+    /**
+     * The WaitingController to be used with firing.
+     */
+    private WaitingController waiting;
 
     /**
      * Sets up the controller with the grid to fire upon.
@@ -21,7 +26,8 @@ public final class FiringControllerImpl implements FiringController {
      * @param target
      *            the grid owned by the opposing player.
      */
-    public FiringControllerImpl(BattleGrid target) {
+    public FiringControllerImpl(WaitingController waiting, BattleGrid target) {
+        this.waiting = waiting;
         this.target = target;
     }
 

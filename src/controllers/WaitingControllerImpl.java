@@ -58,14 +58,14 @@ public final class WaitingControllerImpl implements WaitingController {
     public PlacementController switchPlacementPlayer() {
         swapPlayersAndGrids();
 
-        return new PlacementControllerImpl(this.currentGrid);
+        return new PlacementControllerImpl(this, this.currentGrid);
     }
 
     @Override
     public FiringController switchFiringPlayer() {
         swapPlayersAndGrids();
 
-        return new FiringControllerImpl(this.inactiveGrid);
+        return new FiringControllerImpl(this, this.inactiveGrid);
     }
 
     /**

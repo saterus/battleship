@@ -6,6 +6,7 @@ import java.util.Set;
 import models.BattleGrid;
 import models.ShipImpl;
 import models.ShipType;
+import views.ShipTypeSelector;
 
 /**
  * Controls the placement of ships on a BattleGrid by keeping a BattleGrid as a

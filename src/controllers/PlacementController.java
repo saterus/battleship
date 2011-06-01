@@ -1,6 +1,7 @@
 package controllers;
 
 import models.ShipType;
+import views.ShipTypeSelector;
 
 // TODO do we need a mathmodel and constraint?
 // TODO add any constructors as @initially
