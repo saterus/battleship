@@ -36,11 +36,11 @@ public class BattleshipFrame extends JFrame {
 	/**
 	 * Creates a view for Ship placement.
 	 */
-	private void createPlacementView() {
+	public void createPlacementView() {
 		PlacementController placing = waiting.switchPlacementPlayer();
 		JPanel content = new JPanel();
 		content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
-		content.add(new BattleGridView());
+		content.add(new BattleGridView(placing, waiting.getActiveGrid()));
 		content.add(new ShipTypeSelector(placing));
 		this.setContentPane(content);
 	}

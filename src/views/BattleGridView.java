@@ -24,7 +24,7 @@ public class BattleGridView extends JPanel {
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
                 BattleGridSquare square = new BattleGridSquare(i, j);
-                square.addPlacementClickListener(con, grid);
+                square.addPlacementClickListener(con);
                 this.add(square);
                 
                 square.setSquareBackground(grid);
