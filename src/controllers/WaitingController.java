@@ -1,8 +1,5 @@
 package controllers;
 
-//TODO do we need a mathmodel and constraint?
-//TODO add any constructors as @initially
-
 /**
  * A controller for Player view changing for use in battleship. The user of this
  * interface has control over what causes the view to change.

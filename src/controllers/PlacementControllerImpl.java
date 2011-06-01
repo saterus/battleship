@@ -6,6 +6,7 @@ import java.util.Set;
 import models.BattleGrid;
 import models.ShipImpl;
 import models.ShipType;
+import views.ShipTypeSelector;
 
 /**
  * Controls the placement of ships on a BattleGrid by keeping a BattleGrid as a
@@ -40,19 +41,28 @@ public final class PlacementControllerImpl implements PlacementController {
 	private Set<ShipType> shipTypesLeft = new HashSet<ShipType>();
 
 	/**
-	 * The ShipTypeSelector to be used for with Ship placement.
+	 * The ShipTypeSelector to be used with Ship placement.
 	 */
 	private ShipTypeSelector selector;
+
+	/**
+	 * The WaitingController to be used with Ship placement.
+	 */
+	private WaitingController waiting;
 
 	/**
 	 * Sets up the PlacementControllerImpl with a BattleGrid. Legal placements
 	 * are added to the grid and illegal placements are not.
 	 * 
+	 * @param waiting
+	 *            the WaitingController used in conjunction with Ship placement.
 	 * @param grid
 	 *            the BattleGrid to which ships are being added.
 	 */
-	public PlacementControllerImpl(BattleGrid grid) {
+	public PlacementControllerImpl(WaitingController waiting, BattleGrid grid) {
 		this.grid = grid;
+		this.waiting = waiting;
+		// Initialize set of ShipTypes to place
 		shipTypesLeft.add(ShipType.AIRCRAFT_CARRIER);
 		shipTypesLeft.add(ShipType.BATTLESHIP);
 		shipTypesLeft.add(ShipType.DESTROYER);
