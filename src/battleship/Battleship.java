@@ -10,7 +10,8 @@ public class Battleship {
      * @param args
      */
     public static void main(String[] args) {
-        JFrame game = new BattleshipFrame();
+        BattleshipFrame game = new BattleshipFrame();
+        game.createPlacementView();
         game.setVisible(true);
         
     }
