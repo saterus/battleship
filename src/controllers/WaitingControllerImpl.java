@@ -11,10 +11,6 @@ import models.Player;
  * 
  */
 public final class WaitingControllerImpl implements WaitingController {
-
-    // TODO: Maybe add a player field to the BattleGrid, or vice versa to cut
-    // down on redundant parameters here.
-
     /**
      * The current player.
      */
@@ -65,7 +61,7 @@ public final class WaitingControllerImpl implements WaitingController {
     public FiringController switchFiringPlayer() {
         swapPlayersAndGrids();
 
-        return new FiringControllerImpl(this, this.inactiveGrid);
+        return new FiringControllerImpl(this, this.currentGrid);
     }
 
     /**
