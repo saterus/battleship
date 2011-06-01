@@ -1,6 +1,8 @@
 package battleship;
 
-import models.ShipType;
+import javax.swing.JFrame;
+
+import views.BattleshipFrame;
 
 public class Battleship {
 
@@ -8,9 +10,9 @@ public class Battleship {
      * @param args
      */
     public static void main(String[] args) {
-        ShipType s = ShipType.AIRCRAFT_CARRIER;
-        System.out.println(s);
-        System.out.println(s.length());
+        JFrame game = new BattleshipFrame();
+        game.setVisible(true);
+        
     }
 
 }

@@ -76,6 +76,8 @@ public interface BattleGrid {
 	boolean isShip(int x, int y);
 	
 	/**
+	 * Checks to make sure that the specified coordinate is within the
+	 * 	bounds of the board.
 	 * 
 	 * @param x
 	 *            the x-coordinate of the position to check for a Ship.
