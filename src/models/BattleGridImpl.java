@@ -145,6 +145,13 @@ public final class BattleGridImpl implements BattleGrid {
 		return gridSpace[x][y][0];
 		
 	}
+	
+	@Override
+	public boolean boundsCheck(int x, int y) {
+		
+		return x <= BOARD_L && y <= BOARD_L && x > -1 && y > -1;
+		
+	}
 
 	
 }
