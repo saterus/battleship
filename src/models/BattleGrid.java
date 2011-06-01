@@ -87,6 +87,8 @@ public interface BattleGrid {
 	 * 		   {@code false} if the position is outside the grid space.
 	 */
 	boolean boundsCheck(int x, int y);
+	
+	int gridSize();
 
 	// TODO remove this before submitting the project!
 	// public boolean isRevealed(int x, int y); Removed because it leaks
