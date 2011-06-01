@@ -23,7 +23,7 @@ public class OrientationSelector extends JButton {
                 
                 OrientationSelector.this.orientation = 
                     !OrientationSelector.this.orientation;
-                OrientationSelector.this.controller.rotate();
+                OrientationSelector.this.controller.rotateShip();
             }
         });
     }
