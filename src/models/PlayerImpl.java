@@ -15,14 +15,6 @@ public final class PlayerImpl implements Player {
 	private String name;
 
 	/**
-	 * Default constructor. Sets the Player's name to a default value of
-	 * "New Player".
-	 */
-	public PlayerImpl() {
-		name = "New Player";
-	}
-
-	/**
 	 * Constructor that sets the Player's name to {@code name}.
 	 * 
 	 * @param name
