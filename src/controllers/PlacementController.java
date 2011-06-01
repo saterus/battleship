@@ -32,4 +32,29 @@ public interface PlacementController {
 	 */
 	boolean setShipPos(ShipType t, int x, int y, boolean orient);
 
+	/**
+	 * Sets the type of the Ship currently selected for placement.
+	 * 
+	 * @param type
+	 *            the ShipType of the Ship being placed.
+	 */
+	void setSelectedShipType(ShipType type);
+
+	/**
+	 * Makes the selected ShipType unavailable for future selection.
+	 */
+	void disableSelectedShipType();
+
+	/**
+	 * Registers the ShipTypeSelector with the PlacementController.
+	 * 
+	 * @param selector
+	 *            the ShipTypeSelector to be used.
+	 */
+	void registerShipTypeSelector(ShipTypeSelector selector);
+
+	/**
+	 * Changes the orientation of the selected Ship.
+	 */
+	void rotateShip();
 }
