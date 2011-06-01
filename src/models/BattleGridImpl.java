@@ -27,11 +27,16 @@ public final class BattleGridImpl implements BattleGrid {
 	 */
 
 	private final boolean[][][] gridSpace;
+	
+	/**
+	 * isActive returns whether or not a player is active and it's their turn.
+	 */
+	private boolean isActive = false;
 
 	/**
 	 * Default constructor, which initializes the size of the grid.
 	 */
-
+	
 	public BattleGridImpl() {
 		gridSpace = new boolean[BOARD_L][BOARD_L][1];
 	}
@@ -102,4 +107,15 @@ public final class BattleGridImpl implements BattleGrid {
 	public int gridSize() {
 		return BOARD_L;
 	}
+	
+	@Override
+	public void setPlayerState(boolean state) {
+		isActive = state;
+	}
+	
+	@Override
+	public boolean getPlayerState() {
+		return isActive;
+	}
+	
 }
