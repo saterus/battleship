@@ -96,5 +96,25 @@ public interface BattleGrid {
 	 * @return the dimension of one side of the grid.
 	 */
 	int gridSize();
+	
+	/**
+	 * This will set the player as either active or inactive when playing separate turns.
+	 * 
+	 * @ensures The player's state = state
+	 * @param state
+	 * 		The state in which the player will assume, where
+	 * 			{@code true} = Active
+	 * 			{@code false} = Inactive
+	 */
+	void setPlayerState(boolean state);
+	
+	/**
+	 * Returns whether or not a player is active and taking their turn.
+	 * 
+	 * @return isActive
+	 * 			{@code true} = Active
+	 * 			{@code false} = Inactive
+	 */
+	boolean getPlayerState();
 
 }
