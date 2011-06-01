@@ -2,9 +2,6 @@ package controllers;
 
 import models.ShipType;
 
-// TODO do we need a mathmodel and constraint?
-// TODO add any constructors as @initially
-
 /**
  * A controller for Ship placement for use in battleship. The user of this
  * interface has control over what Ship placements are legal.
