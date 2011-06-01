@@ -39,6 +39,7 @@ public class OrientationSelector extends JButton {
 	public OrientationSelector(PlacementController con) {
 		this.controller = con;
 		this.orientation = true;
+		
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				OrientationSelector.this.orientation = 
@@ -46,5 +47,11 @@ public class OrientationSelector extends JButton {
 				OrientationSelector.this.controller.rotateShip();
 			}
 		});
+
+		if (orientation) {
+			this.setText("Change to vertical");
+		} else {
+			this.setText("Change to horizontal.");
+		}
 	}
 }
