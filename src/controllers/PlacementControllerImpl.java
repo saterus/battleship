@@ -117,4 +117,9 @@ public final class PlacementControllerImpl implements PlacementController {
 
 	}
 
+	@Override
+	public boolean allPlaced() {
+		return (shipTypesLeft.size() == 0);
+	}
+
 }

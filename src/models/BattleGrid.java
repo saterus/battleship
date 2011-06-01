@@ -17,8 +17,8 @@ public interface BattleGrid {
 	 * Assigns positions in the grid to the specified Ship.
 	 * 
 	 * @requires 0 <= x <= 9 and 0 <= y <= 9
-	 * @ensures A ship is set within the given position assuming
-	 * 			no other ship occupies those spaces.
+	 * @ensures A ship is set within the given position assuming no other ship
+	 *          occupies those spaces.
 	 * 
 	 * @param ship
 	 *            the Ship to place on the grid
@@ -29,7 +29,7 @@ public interface BattleGrid {
 	 * @param orient
 	 *            the orientation of the Ship ({@code true} if oriented along
 	 *            the x-axis, and {@code false} if along the y).
-	 *            
+	 * 
 	 */
 	void setShipPos(Ship ship, int x, int y, boolean orient);
 
@@ -74,21 +74,26 @@ public interface BattleGrid {
 	 *         {@code false} otherwise.
 	 */
 	boolean isShip(int x, int y);
-	
+
 	/**
-	 * Checks to make sure that the specified coordinate is within the
-	 * 	bounds of the board.
+	 * Checks to make sure that the specified coordinate is within the bounds of
+	 * the board.
 	 * 
 	 * @param x
 	 *            the x-coordinate of the position to check for a Ship.
 	 * @param y
 	 *            the y-coordinate of the position to check for a Ship.
 	 * @return {@code true} if the position is within the grid space.
-	 * 		   {@code false} if the position is outside the grid space.
+	 *         {@code false} if the position is outside the grid space.
 	 */
 	boolean boundsCheck(int x, int y);
 
-	// TODO remove this before submitting the project!
-	// public boolean isRevealed(int x, int y); Removed because it leaks
-	// information.
+	/**
+	 * Returns the dimension of one side of the grid. Since the grid is square,
+	 * both dimensions are equal.
+	 * 
+	 * @return the dimension of one side of the grid.
+	 */
+	int gridSize();
+
 }

@@ -14,7 +14,7 @@ public final class BattleGridImpl implements BattleGrid {
 	 * BOARD_L is the length of the grid. 
 	 */
 	
-	private static final int BOARD_L = 9;
+	private static final int BOARD_L = 10;
 	
 	/**
 	 * 
@@ -149,7 +149,13 @@ public final class BattleGridImpl implements BattleGrid {
 	@Override
 	public boolean boundsCheck(int x, int y) {
 		
-		return x <= BOARD_L && y <= BOARD_L && x > -1 && y > -1;
+		return x < BOARD_L && y < BOARD_L && x >= 0 && y >= 0;
+		
+	}
+	
+	public int gridSize() {
+		
+		return BOARD_L;
 		
 	}
 

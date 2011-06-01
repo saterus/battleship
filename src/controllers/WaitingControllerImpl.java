@@ -1,5 +1,9 @@
 package controllers;
 
+import javax.swing.JPanel;
+
+import views.BattleshipFrame;
+
 import models.BattleGrid;
 import models.Player;
 
@@ -11,72 +15,83 @@ import models.Player;
  * 
  */
 public final class WaitingControllerImpl implements WaitingController {
-    /**
-     * The current player.
-     */
-    private Player     currentPlayer;
-    /**
-     * The inactive player.
-     */
-    private Player     inactivePlayer;
+	/**
+	 * The current player.
+	 */
+	private Player currentPlayer;
+	/**
+	 * The inactive player.
+	 */
+	private Player inactivePlayer;
 
-    /**
-     * The grid owned by the current player.
-     */
-    private BattleGrid currentGrid;
-    /**
-     * The grid owned by the inactive player.
-     */
-    private BattleGrid inactiveGrid;
+	/**
+	 * The grid owned by the current player.
+	 */
+	private BattleGrid currentGrid;
 
-    /**
-     * Setup controller with the current/inactive player/grids.
-     * 
-     * @param currentPlayer
-     *            the currently active player.
-     * @param currentGrid
-     *            the currently active grid.
-     * @param inactivePlayer
-     *            the currently inactive player.
-     * @param inactiveGrid
-     *            the currently inactive grid.
-     */
-    public WaitingControllerImpl(Player currentPlayer, BattleGrid currentGrid,
-            Player inactivePlayer, BattleGrid inactiveGrid) {
-        this.currentPlayer = currentPlayer;
-        this.currentGrid = currentGrid;
+	/**
+	 * The BattleshipFrame using WaitingController as a view manager.
+	 */
+	private BattleshipFrame battleship;
 
-        this.inactivePlayer = inactivePlayer;
-        this.inactiveGrid = inactiveGrid;
-    }
+	/**
+	 * The grid owned by the inactive player.
+	 */
+	private BattleGrid inactiveGrid;
 
-    @Override
-    public PlacementController switchPlacementPlayer() {
-        swapPlayersAndGrids();
+	/**
+	 * Setup controller with the current/inactive player/grids.
+	 * 
+	 * @param battleship
+	 *            the BattleshipFrame for the game.
+	 * @param currentPlayer
+	 *            the currently active player.
+	 * @param currentGrid
+	 *            the currently active grid.
+	 * @param inactivePlayer
+	 *            the currently inactive player.
+	 * @param inactiveGrid
+	 *            the currently inactive grid.
+	 */
+	public WaitingControllerImpl(BattleshipFrame battleship,
+			Player currentPlayer, BattleGrid currentGrid,
+			Player inactivePlayer, BattleGrid inactiveGrid) {
+		this.battleship = battleship;
 
-        return new PlacementControllerImpl(this, this.currentGrid);
-    }
+		this.currentPlayer = currentPlayer;
+		this.currentGrid = currentGrid;
 
-    @Override
-    public FiringController switchFiringPlayer() {
-        swapPlayersAndGrids();
+		this.inactivePlayer = inactivePlayer;
+		this.inactiveGrid = inactiveGrid;
+	}
 
-        return new FiringControllerImpl(this, this.currentGrid);
-    }
+	@Override
+	public PlacementController switchPlacementPlayer() {
+		swapPlayersAndGrids();
 
-    /**
-     * Swaps the current player and the inactive player member variables, as
-     * well as the grids.
-     */
-    private void swapPlayersAndGrids() {
-        Player tempPlayer = this.currentPlayer;
-        BattleGrid tempGrid = this.currentGrid;
+		return new PlacementControllerImpl(this, this.currentGrid);
+	}
 
-        this.currentPlayer = this.inactivePlayer;
-        this.currentGrid = this.inactiveGrid;
+	@Override
+	public FiringController switchFiringPlayer() {
+		swapPlayersAndGrids();
 
-        this.inactivePlayer = tempPlayer;
-        this.inactiveGrid = tempGrid;
-    }
+		return new FiringControllerImpl(this, this.currentGrid);
+	}
+
+	/**
+	 * Swaps the current player and the inactive player member variables, as
+	 * well as the grids.
+	 */
+	private void swapPlayersAndGrids() {
+		Player tempPlayer = this.currentPlayer;
+		BattleGrid tempGrid = this.currentGrid;
+
+		this.currentPlayer = this.inactivePlayer;
+		this.currentGrid = this.inactiveGrid;
+
+		this.inactivePlayer = tempPlayer;
+		this.inactiveGrid = tempGrid;
+	}
 
 }
