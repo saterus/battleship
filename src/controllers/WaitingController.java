@@ -1,5 +1,7 @@
 package controllers;
 
+import models.BattleGrid;
+
 /**
  * A controller for Player view changing for use in battleship. The user of this
  * interface has control over what causes the view to change.
@@ -28,5 +30,7 @@ public interface WaitingController {
 	 *         defending.
 	 */
 	FiringController switchFiringPlayer();
+	
+	BattleGrid getActiveGrid();
 
 }
