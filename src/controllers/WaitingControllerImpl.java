@@ -60,6 +60,7 @@ public final class WaitingControllerImpl implements WaitingController {
 
 		this.currentPlayer = currentPlayer;
 		this.currentGrid = currentGrid;
+		this.currentGrid.setPlayerState(true);
 
 		this.inactivePlayer = inactivePlayer;
 		this.inactiveGrid = inactiveGrid;
@@ -94,9 +95,11 @@ public final class WaitingControllerImpl implements WaitingController {
 
 		this.currentPlayer = this.inactivePlayer;
 		this.currentGrid = this.inactiveGrid;
+		this.currentGrid.setPlayerState(true);
 
 		this.inactivePlayer = tempPlayer;
 		this.inactiveGrid = tempGrid;
+		this.inactiveGrid.setPlayerState(false);
 	}
 
 }
