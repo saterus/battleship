@@ -14,8 +14,21 @@ import controllers.PlacementController;
 import controllers.WaitingController;
 import controllers.WaitingControllerImpl;
 
+/**
+ * Maintains and displays the current view for the Battleship game.
+ * 
+ * @author Group c421aa06
+ */
 public final class BattleshipFrame extends JFrame {
 
+	/**
+	 * Serial Version ID.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * A logger for use with the BattleshipFrame class.
+	 */
 	private static final Logger logger = Logger.getLogger(BattleshipFrame.class
 			.getName());
 
@@ -29,6 +42,10 @@ public final class BattleshipFrame extends JFrame {
 	 */
 	private JPanel currentView;
 
+	/**
+	 * Default constructor. Initializes Players, BattleGrids, and
+	 * WaitingController to kick off Battleship game.
+	 */
 	public BattleshipFrame() {
 
 		BattleGrid gridA = new BattleGridImpl();
@@ -87,6 +104,9 @@ public final class BattleshipFrame extends JFrame {
 		logger.finer("Created Firing View");
 	}
 
+	/**
+	 * Begins a new game by creating the PlacementView.
+	 */
 	public void start() {
 		createPlacementView();
 	}
