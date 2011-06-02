@@ -23,9 +23,9 @@ public final class BattleGridSquare extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * A logger for the BattleGridSquare class.
+	 * A LOGGER for the BattleGridSquare class.
 	 */
-	private static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(BattleGridSquare.class.getName());
 
 	/**
@@ -73,7 +73,7 @@ public final class BattleGridSquare extends JPanel {
 		this.x = x;
 		this.y = y;
 
-		logger.finest("Created square (" + x + "," + y + ").");
+		LOGGER.finest("Created square (" + x + "," + y + ").");
 	}
 
 	/**
@@ -94,7 +94,7 @@ public final class BattleGridSquare extends JPanel {
 
 				boolean placementSuccess = con.setShipPos(x, y);
 
-				logger.finer("Successful placed ship at (" + x + "," + y + ")?"
+				LOGGER.finer("Successful placed ship at (" + x + "," + y + ")?"
 						+ placementSuccess);
 
 				if (placementSuccess) {
@@ -136,7 +136,7 @@ public final class BattleGridSquare extends JPanel {
 
 		this.setBackground(currentColor);
 
-		logger.finer("Set bg color at (" + x + "," + y + "):"
+		LOGGER.finer("Set bg color at (" + x + "," + y + "):"
 				+ currentColor.toString());
 	}
 }

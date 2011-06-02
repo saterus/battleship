@@ -19,9 +19,9 @@ import controllers.PlacementController;
 public class OrientationSelector extends JPanel {
 
 	/**
-	 * A logger for use with the OrientationSelector class.
+	 * A LOGGER for use with the OrientationSelector class.
 	 */
-	private static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(OrientationSelector.class.getName());
 
 	/**
@@ -94,7 +94,8 @@ public class OrientationSelector extends JPanel {
 
 				OrientationSelector.this.controller.rotateShip();
 
-				OrientationSelector.this.orientation = !OrientationSelector.this.orientation;
+				OrientationSelector.this.orientation = 
+					!OrientationSelector.this.orientation;
 
 				if (orientation) {
 					OrientationSelector.this.button
@@ -105,12 +106,12 @@ public class OrientationSelector extends JPanel {
 					OrientationSelector.this.label.setText(northSouthLabelText);
 				}
 
-				logger.finest("orientation set to : "
+				LOGGER.finest("orientation set to : "
 						+ OrientationSelector.this.orientation);
 			}
 		});
 
-		logger.finer("OrientationSelector created.");
+		LOGGER.finer("OrientationSelector created.");
 
 	}
 }

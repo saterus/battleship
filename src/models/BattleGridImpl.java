@@ -13,9 +13,9 @@ import java.util.logging.Logger;
 public final class BattleGridImpl implements BattleGrid {
 
 	/**
-	 * A logger to be used with the BattleGridImpl class.
+	 * A LOGGER to be used with the BattleGridImpl class.
 	 */
-	private static final Logger logger = Logger.getLogger(BattleGridImpl.class
+	private static final Logger LOGGER = Logger.getLogger(BattleGridImpl.class
 			.getName());
 
 	/**
@@ -47,7 +47,7 @@ public final class BattleGridImpl implements BattleGrid {
 
 	public BattleGridImpl() {
 		gridSpace = new boolean[BOARD_L][BOARD_L][2];
-		logger.finest("Created BattleGrid.");
+		LOGGER.finest("Created BattleGrid.");
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public final class BattleGridImpl implements BattleGrid {
 			}
 		}
 
-		logger.fine("Set ship at (" + x + "," + y + ")");
+		LOGGER.fine("Set ship at (" + x + "," + y + ")");
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public final class BattleGridImpl implements BattleGrid {
 			didHit = true;
 		}
 
-		logger.fine("Shot at (" + x + "," + y + "). Hit? " + didHit);
+		LOGGER.fine("Shot at (" + x + "," + y + "). Hit? " + didHit);
 		return didHit;
 	}
 

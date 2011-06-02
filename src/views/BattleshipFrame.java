@@ -37,9 +37,9 @@ public final class BattleshipFrame extends JFrame {
 	private static final int WIDTH = 600;
 
 	/**
-	 * A logger for use with the BattleshipFrame class.
+	 * A LOGGER for use with the BattleshipFrame class.
 	 */
-	private static final Logger logger = Logger.getLogger(BattleshipFrame.class
+	private static final Logger LOGGER = Logger.getLogger(BattleshipFrame.class
 			.getName());
 
 	/**
@@ -71,7 +71,7 @@ public final class BattleshipFrame extends JFrame {
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		logger.finer("Created Frame.");
+		LOGGER.finer("Created Frame.");
 	}
 
 	/**
@@ -85,7 +85,7 @@ public final class BattleshipFrame extends JFrame {
 		this.currentView = view;
 		this.setContentPane(view);
 
-		logger.finer("Created Placement View");
+		LOGGER.finer("Created Placement View");
 	}
 
 	/**
@@ -97,7 +97,7 @@ public final class BattleshipFrame extends JFrame {
 		this.currentView = view;
 		this.setContentPane(view);
 
-		logger.finer("Created Waiting View");
+		LOGGER.finer("Created Waiting View");
 	}
 
 	/**
@@ -111,7 +111,7 @@ public final class BattleshipFrame extends JFrame {
 		this.currentView = view;
 		this.setContentPane(view);
 
-		logger.finer("Created Firing View");
+		LOGGER.finer("Created Firing View");
 	}
 
 	/**

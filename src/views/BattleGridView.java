@@ -23,9 +23,9 @@ public final class BattleGridView extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * A logger for use with the BattleGridView class.
+	 * A LOGGER for use with the BattleGridView class.
 	 */
-	private static final Logger logger = Logger.getLogger(BattleGridView.class
+	private static final Logger LOGGER = Logger.getLogger(BattleGridView.class
 			.getName());
 
 	/** Size of the grid used by the game. */
@@ -54,7 +54,7 @@ public final class BattleGridView extends JPanel {
 				square.setSquareBackground(grid);
 			}
 		}
-		logger.finer("Created BattleGridView");
+		LOGGER.finer("Created BattleGridView");
 	}
 
 	/**
@@ -68,6 +68,6 @@ public final class BattleGridView extends JPanel {
 			BattleGridSquare sq = (BattleGridSquare) square;
 			sq.setSquareBackground(grid);
 		}
-		logger.finest("Redrawing Square Backgrounds.");
+		LOGGER.finest("Redrawing Square Backgrounds.");
 	}
 }

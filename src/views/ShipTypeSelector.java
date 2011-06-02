@@ -21,9 +21,9 @@ import controllers.PlacementController;
 public final class ShipTypeSelector extends JPanel {
 
 	/**
-	 * A logger for use with the ShipTypeSelector class.
+	 * A LOGGER for use with the ShipTypeSelector class.
 	 */
-	private static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(ShipTypeSelector.class.getName());
 
 	/**
@@ -57,7 +57,7 @@ public final class ShipTypeSelector extends JPanel {
 			buttonMap.put(s, ship);
 		}
 
-		logger.finest("Created ShipTypeSeletor.");
+		LOGGER.finest("Created ShipTypeSeletor.");
 	}
 
 	/**
@@ -70,6 +70,6 @@ public final class ShipTypeSelector extends JPanel {
 
 	public void disableShipButton(ShipType s) {
 		buttonMap.get(s).setEnabled(false);
-		logger.finer("Disabled " + s.toString() + " Button");
+		LOGGER.finer("Disabled " + s.toString() + " Button");
 	}
 }

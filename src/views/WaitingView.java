@@ -21,9 +21,14 @@ import controllers.WaitingController;
 public final class WaitingView extends JPanel {
 
 	/**
-	 * A logger for use with the WaitingView class.
+	 * Serial Version ID.
 	 */
-	private static final Logger logger = Logger.getLogger(WaitingView.class
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * A LOGGER for use with the WaitingView class.
+	 */
+	private static final Logger LOGGER = Logger.getLogger(WaitingView.class
 			.getName());
 
 	/**
@@ -70,12 +75,12 @@ public final class WaitingView extends JPanel {
 
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				logger.fine("Finished waiting. Next screen.");
+				LOGGER.fine("Finished waiting. Next screen.");
 				controller.nextScreen();
 			}
 		});
 
-		logger.finer("Waiting on "
+		LOGGER.finer("Waiting on "
 				+ this.controller.getActivePlayer().getPlayerName());
 	}
 }

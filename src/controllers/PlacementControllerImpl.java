@@ -18,7 +18,7 @@ import views.ShipTypeSelector;
  */
 public final class PlacementControllerImpl implements PlacementController {
 
-    private static final Logger logger        = Logger.getLogger(
+    private static final Logger LOGGER        = Logger.getLogger(
             PlacementControllerImpl.class.getName());
 
     /**
@@ -87,7 +87,7 @@ public final class PlacementControllerImpl implements PlacementController {
                 || (!this.curOrientation && !this.grid.boundsCheck(x, y
                         + this.currentShipType.length()))) {
 
-            logger.finest("Attempted out of bounds ship placement.");
+            LOGGER.finest("Attempted out of bounds ship placement.");
 
             return false;
         }
@@ -108,7 +108,7 @@ public final class PlacementControllerImpl implements PlacementController {
             this.grid.setShipPos(new ShipImpl(this.currentShipType), x, y,
                     this.curOrientation);
         } else {
-            logger.fine("Attempted to place on top of an existing ship.");
+            LOGGER.fine("Attempted to place on top of an existing ship.");
         }
 
         return validPlacement;
@@ -116,34 +116,34 @@ public final class PlacementControllerImpl implements PlacementController {
 
     @Override
     public void setSelectedShipType(ShipType type) {
-        logger.finest("Set ShipType: " + type + ".");
+        LOGGER.finest("Set ShipType: " + type + ".");
         this.currentShipType = type;
     }
 
     @Override
     public void disableSelectedShipType() {
-        logger.fine("Disabling " + this.currentShipType.toString() + ".");
+        LOGGER.fine("Disabling " + this.currentShipType.toString() + ".");
         
         this.shipTypesLeft.remove(this.currentShipType);
         this.selector.disableShipButton(this.currentShipType);
         this.currentShipType = null;
         
         if(0 == this.shipTypesLeft.size()) {
-            logger.fine("Switching players.");
+            LOGGER.fine("Switching players.");
             this.waiting.nextScreen();
         }
     }
 
     @Override
     public void registerShipTypeSelector(ShipTypeSelector selector) {
-        logger.finest("Registered ShipTypeSelector.");
+        LOGGER.finest("Registered ShipTypeSelector.");
         
         this.selector = selector;
     }
 
     @Override
     public void rotateShip() {
-        logger.finest("Rotated Ship Placement: " + this.curOrientation + ".");
+        LOGGER.finest("Rotated Ship Placement: " + this.curOrientation + ".");
         
         this.curOrientation = !this.curOrientation;
 

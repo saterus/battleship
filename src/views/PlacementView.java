@@ -21,9 +21,9 @@ public final class PlacementView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * A logger for use with the PlacementView class.
+	 * A LOGGER for use with the PlacementView class.
 	 */
-	private static final Logger logger = Logger.getLogger(PlacementView.class
+	private static final Logger LOGGER = Logger.getLogger(PlacementView.class
 			.getName());
 
 	/**
@@ -45,7 +45,7 @@ public final class PlacementView extends JPanel {
 		rightSide.add(new ShipTypeSelector(placing));
 		rightSide.add(new OrientationSelector(placing));
 
-		logger.finer("Placing on grid " + activeGrid.toString());
+		LOGGER.finer("Placing on grid " + activeGrid.toString());
 	}
 
 }
