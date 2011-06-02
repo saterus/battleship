@@ -114,14 +114,24 @@ public final class WaitingControllerImpl implements WaitingController {
 	}
 
 	@Override
-	public BattleGrid getActiveGrid() {
-		return this.currentGrid;
-	}
+    public BattleGrid getActiveGrid() {
+        return this.currentGrid;
+    }
 
-	@Override
-	public Player getActivePlayer() {
-		return this.currentPlayer;
-	}
+    @Override
+    public Player getActivePlayer() {
+        return this.currentPlayer;
+    }
+    
+    @Override
+    public BattleGrid getInactiveGrid() {
+        return this.inactiveGrid;
+    }
+
+    @Override
+    public Player getInactivePlayer() {
+        return this.inactivePlayer;
+    }
 
 	/**
 	 * Swaps the current player and the inactive player member variables, as

@@ -38,17 +38,31 @@ public interface WaitingController {
 	void nextScreen();
 
 	/**
-	 * Retrieves the active BattleGrid.
-	 * 
-	 * @return the BattleGrid that is currently active.
-	 */
-	BattleGrid getActiveGrid();
+     * Retrieves the active BattleGrid.
+     * 
+     * @return the BattleGrid that is currently active.
+     */
+    BattleGrid getActiveGrid();
 
-	/**
-	 * Retrieves the active Player.
-	 * 
-	 * @return the Player that is currently active.
-	 */
-	Player getActivePlayer();
+    /**
+     * Retrieves the active Player.
+     * 
+     * @return the Player that is currently active.
+     */
+    Player getActivePlayer();
+    
+    /**
+     * Retrieves the inactive BattleGrid.
+     * 
+     * @return the BattleGrid that is currently inactive.
+     */
+    BattleGrid getInactiveGrid();
+
+    /**
+     * Retrieves the inactive Player.
+     * 
+     * @return the Player that is currently inactive.
+     */
+    Player getInactivePlayer();
 
 }
