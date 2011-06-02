@@ -63,8 +63,8 @@ public class BattleGridSquare extends JPanel {
         logger.finest("Created square (" + x + "," + y + ").");
     }
 
-    public void addPlacementClickListener(final PlacementController con,
-            final BattleGrid grid) {
+    public void addPlacementClickListener(final BattleGridView gView,
+            final PlacementController con, final BattleGrid grid) {
 
         this.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -72,7 +72,7 @@ public class BattleGridSquare extends JPanel {
                 boolean placementSuccess = con.setShipPos(x, y);
 
                 if (placementSuccess) {
-                    BattleGridSquare.this.setSquareBackground(grid);
+                    gView.redrawSquareBackgrounds(grid);
                     con.disableSelectedShipType();
                 }
 
