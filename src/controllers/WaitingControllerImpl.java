@@ -1,11 +1,14 @@
 package controllers;
 
-import javax.swing.JPanel;
-
-import views.BattleshipFrame;
+import java.util.ArrayList;
+import java.util.List;
 
 import models.BattleGrid;
 import models.Player;
+import views.BattleshipFrame;
+import views.FiringView;
+import views.PlacementView;
+import views.WaitingView;
 
 /**
  * Controls the waiting round between placement and firing shots. Tracks which
@@ -38,6 +41,10 @@ public final class WaitingControllerImpl implements WaitingController {
 	 * The grid owned by the inactive player.
 	 */
 	private BattleGrid inactiveGrid;
+	
+	@SuppressWarnings("rawtypes")
+    private final List<Class> viewSequence;
+	private int sequenceCounter = 0;
 
 	/**
 	 * Setup controller with the current/inactive player/grids.
@@ -53,10 +60,18 @@ public final class WaitingControllerImpl implements WaitingController {
 	 * @param inactiveGrid
 	 *            the currently inactive grid.
 	 */
-	public WaitingControllerImpl(BattleshipFrame battleship,
+	@SuppressWarnings("rawtypes")
+    public WaitingControllerImpl(BattleshipFrame battleship,
 			Player currentPlayer, BattleGrid currentGrid,
 			Player inactivePlayer, BattleGrid inactiveGrid) {
 		this.battleship = battleship;
+		
+		this.viewSequence = new ArrayList<Class>();
+		this.viewSequence.add(PlacementView.class);
+		this.viewSequence.add(WaitingView.class);
+		this.viewSequence.add(PlacementView.class);
+		this.viewSequence.add(WaitingView.class);
+		this.viewSequence.add(FiringView.class);
 
 		this.currentPlayer = currentPlayer;
 		this.currentGrid = currentGrid;
@@ -81,9 +96,25 @@ public final class WaitingControllerImpl implements WaitingController {
 	}
 	
 	@Override
-	public BattleGrid getActiveGrid() {
-	    return this.currentGrid;
+	public void nextScreen() {
+	    if(sequenceCounter == viewSequence.indexOf(FiringView.class)) {
+	        sequenceCounter--;
+	    } else {
+	        sequenceCounter++;
+	    }
+	    
+	    this.battleship.switchView(viewSequence.get(sequenceCounter));
 	}
+	
+    @Override
+    public BattleGrid getActiveGrid() {
+        return this.currentGrid;
+    }
+    
+    @Override
+    public Player getActivePlayer() {
+        return this.currentPlayer;
+    }
 
 	/**
 	 * Swaps the current player and the inactive player member variables, as

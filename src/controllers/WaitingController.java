@@ -1,6 +1,7 @@
 package controllers;
 
 import models.BattleGrid;
+import models.Player;
 
 /**
  * A controller for Player view changing for use in battleship. The user of this
@@ -31,6 +32,10 @@ public interface WaitingController {
 	 */
 	FiringController switchFiringPlayer();
 	
+	void nextScreen();
+	
 	BattleGrid getActiveGrid();
+	
+	Player getActivePlayer();
 
 }

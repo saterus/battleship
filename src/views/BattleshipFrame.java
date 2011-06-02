@@ -2,7 +2,6 @@ package views;
 
 import java.util.logging.Logger;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -23,6 +22,8 @@ public class BattleshipFrame extends JFrame {
      */
     private WaitingController   waiting;
 
+    private JPanel              currentView;
+
     public BattleshipFrame() {
 
         BattleGrid gridA = new BattleGridImpl();
@@ -36,29 +37,60 @@ public class BattleshipFrame extends JFrame {
         this.setSize(800, 600);
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         logger.finer("Created Frame.");
     }
 
     /**
      * Creates a view for Ship placement.
      */
-    public void createPlacementView() {
+    private void createPlacementView() {
         PlacementController placing = waiting.switchPlacementPlayer();
-        
-        JPanel content = new JPanel();
-        content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
-        content.add(new BattleGridView(placing, waiting.getActiveGrid()));
 
-        JPanel rightSide = new JPanel();
-        content.add(rightSide);
-        rightSide.setLayout(new BoxLayout(rightSide, BoxLayout.Y_AXIS));
-        rightSide.add(new ShipTypeSelector(placing));
-        rightSide.add(new OrientationSelector(placing));
+        PlacementView view = new PlacementView(placing, waiting.getActiveGrid());
 
-        
-        this.setContentPane(content);
-        
+        this.currentView = view;
+        this.setContentPane(view);
+
         logger.finer("Created Placement View");
+    }
+
+    private void createWaitingView() {
+        WaitingView view = new WaitingView(waiting);
+
+        this.currentView = view;
+        this.setContentPane(view);
+
+        logger.finer("Created Waiting View");
+    }
+
+    private void createFiringView() {
+        // WaitingView view = new WaitingView(waiting);
+        //
+        // this.currentView = view;
+        // this.setContentPane(view);
+        //
+        // logger.finer("Created Firing View");
+    }
+
+    public void start() {
+        createPlacementView();
+    }
+
+    @SuppressWarnings("rawtypes")
+    public void switchView(Class nextView) {
+        this.currentView.setVisible(false);
+
+        if (WaitingView.class == nextView) {
+            createWaitingView();
+        } else if (PlacementView.class == nextView) {
+            createPlacementView();
+        } else if (FiringView.class == nextView) {
+            createFiringView();
+        } else {
+            throw new IllegalArgumentException("Unexpected view class: "
+                    + nextView.toString());
+        }
+
     }
 }

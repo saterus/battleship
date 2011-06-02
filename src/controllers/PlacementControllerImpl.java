@@ -130,7 +130,7 @@ public final class PlacementControllerImpl implements PlacementController {
         
         if(0 == this.shipTypesLeft.size()) {
             logger.fine("Switching players.");
-            this.waiting.switchPlacementPlayer();
+            this.waiting.nextScreen();
         }
     }
 

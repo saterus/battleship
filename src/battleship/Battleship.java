@@ -10,7 +10,7 @@ public class Battleship {
     public static void main(String[] args) {
 
         BattleshipFrame game = new BattleshipFrame();
-        game.createPlacementView();
+        game.start();
         game.setVisible(true);
 
     }
