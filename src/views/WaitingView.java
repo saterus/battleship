@@ -67,7 +67,7 @@ public final class WaitingView extends JPanel {
 
 		this.setLayout(new GridBagLayout());
 
-		label = new JLabel(this.controller.getActivePlayer().getPlayerName()
+		label = new JLabel(this.controller.getInactivePlayer().getPlayerName()
 				+ WaitingView.MESSAGE_SUFFIX);
 		label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
@@ -81,6 +81,6 @@ public final class WaitingView extends JPanel {
 		});
 
 		LOGGER.finer("Waiting on "
-				+ this.controller.getActivePlayer().getPlayerName());
+				+ this.controller.getInactivePlayer().getPlayerName());
 	}
 }
