@@ -1,5 +1,5 @@
 package views;
 
-public class PlacementView {
+public final class PlacementView {
 
 }

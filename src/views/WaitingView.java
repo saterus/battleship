@@ -1,5 +1,5 @@
 package views;
 
-public class WaitingView {
+public final class WaitingView {
 
 }
