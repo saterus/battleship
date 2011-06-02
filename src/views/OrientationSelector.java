@@ -18,6 +18,9 @@ import controllers.PlacementController;
  */
 public class OrientationSelector extends JPanel {
 
+	/**
+	 * A logger for use with the OrientationSelector class.
+	 */
 	private static final Logger logger = Logger
 			.getLogger(OrientationSelector.class.getName());
 
@@ -38,14 +41,34 @@ public class OrientationSelector extends JPanel {
 	 */
 	private boolean orientation;
 
+	/**
+	 * The label for the OrientationSelector button.
+	 */
 	private final JLabel label;
 
+	/**
+	 * The button to change the orientation.
+	 */
 	private final JButton button;
 
+	/**
+	 * Label text indicating orientation along the y-axis.
+	 */
 	private final String northSouthLabelText = "North/South Placement";
+	
+	/**
+	 * Label text indicating orientation along the x-axis.
+	 */
 	private final String eastWestLabelText = "East/West Placement";
 
+	/**
+	 * Button text to change orientation to align with y-axis.
+	 */
 	private final String northSouthButtonText = "Change to North/South";
+	
+	/**
+	 * Button text to change orientation to align with x-axis.
+	 */
 	private final String eastWestButtonText = "Change to East/West";
 
 	/**
@@ -71,8 +94,7 @@ public class OrientationSelector extends JPanel {
 
 				OrientationSelector.this.controller.rotateShip();
 
-				OrientationSelector.this.orientation = 
-					!OrientationSelector.this.orientation;
+				OrientationSelector.this.orientation = !OrientationSelector.this.orientation;
 
 				if (orientation) {
 					OrientationSelector.this.button

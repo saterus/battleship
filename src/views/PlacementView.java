@@ -10,6 +10,9 @@ import controllers.PlacementController;
 
 public final class PlacementView extends JPanel {
     
+	/**
+	 * A logger for use with the PlacementView class.
+	 */
     private static final Logger logger = Logger.getLogger(PlacementView.class.getName());
 
     public PlacementView(PlacementController placing, BattleGrid activeGrid) {
