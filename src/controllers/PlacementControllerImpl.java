@@ -75,20 +75,25 @@ public final class PlacementControllerImpl implements PlacementController {
      * Modifies this.grid by adding the ship to the BattleGrid if a valid placement.
      */
     public boolean setShipPos(int x, int y) {
-        if (null == currentShipType) {
+        // check easy boundary conditions
+        if (null == this.currentShipType
+                || !this.grid.boundsCheck(x, y)
+                || (this.curOrientation && !this.grid.boundsCheck(x
+                        + this.currentShipType.length(), y))
+                || (!this.curOrientation && !this.grid.boundsCheck(x, 
+                        y + this.currentShipType.length()))) {
+            
             return false;
         }
 
         boolean validPlacement = true;
 
         if (this.curOrientation) {
-            for (int i = 0; i < currentShipType.length(); i++) {
-                // TODO: Add bounds checking within Grid and check those bounds
-                // here.
+            for (int i = 0; i < this.currentShipType.length(); i++) {
                 validPlacement = validPlacement && !this.grid.isShip(x + i, y);
             }
         } else {
-            for (int i = 0; i < currentShipType.length(); i++) {
+            for (int i = 0; i < this.currentShipType.length(); i++) {
                 validPlacement = validPlacement && !this.grid.isShip(x, y + i);
             }
         }
@@ -122,6 +127,5 @@ public final class PlacementControllerImpl implements PlacementController {
         curOrientation = !curOrientation;
 
     }
-
 
 }
