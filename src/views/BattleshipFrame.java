@@ -1,5 +1,7 @@
 package views;
 
+import java.util.logging.Logger;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,35 +16,47 @@ import controllers.WaitingControllerImpl;
 
 public class BattleshipFrame extends JFrame {
 
-	/**
-	 * The WaitingController for use with the battleship game.
-	 */
-	private WaitingController waiting;
+    private static final Logger logger = Logger.getLogger(BattleshipFrame.class.getName());
 
-	public BattleshipFrame() {
+    /**
+     * The WaitingController for use with the battleship game.
+     */
+    private WaitingController   waiting;
 
-		BattleGrid gridA = new BattleGridImpl();
-		BattleGrid gridB = new BattleGridImpl();
-		Player playerA = new PlayerImpl("Player 1");
-		Player playerB = new PlayerImpl("Player 2");
+    public BattleshipFrame() {
 
-		waiting = new WaitingControllerImpl(this, playerB, gridB, playerA, gridA);
+        BattleGrid gridA = new BattleGridImpl();
+        BattleGrid gridB = new BattleGridImpl();
+        Player playerA = new PlayerImpl("Player 1");
+        Player playerB = new PlayerImpl("Player 2");
 
-		this.pack();
-		this.setTitle("Battleship!");
-		this.setSize(800, 600);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+        waiting = new WaitingControllerImpl(this, playerB, gridB, playerA, gridA);
 
-	/**
-	 * Creates a view for Ship placement.
-	 */
-	public void createPlacementView() {
-		PlacementController placing = waiting.switchPlacementPlayer();
-		JPanel content = new JPanel();
-		content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
-		content.add(new BattleGridView(placing, waiting.getActiveGrid()));
-		content.add(new ShipTypeSelector(placing));
-		this.setContentPane(content);
-	}
+        this.setTitle("Battleship!");
+        this.setSize(800, 600);
+        this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        logger.finer("Created Frame.");
+    }
+
+    /**
+     * Creates a view for Ship placement.
+     */
+    public void createPlacementView() {
+        PlacementController placing = waiting.switchPlacementPlayer();
+        JPanel content = new JPanel();
+        content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
+        content.add(new BattleGridView(placing, waiting.getActiveGrid()));
+
+        JPanel rightSide = new JPanel();
+        content.add(rightSide);
+        rightSide.setLayout(new BoxLayout(rightSide, BoxLayout.Y_AXIS));
+        rightSide.add(new ShipTypeSelector(placing));
+        rightSide.add(new OrientationSelector(placing));
+
+        this.setContentPane(content);
+        
+        logger.finer("Created Placement View");
+    }
 }
