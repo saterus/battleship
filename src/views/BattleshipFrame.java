@@ -16,84 +16,101 @@ import controllers.WaitingControllerImpl;
 
 public final class BattleshipFrame extends JFrame {
 
-    private static final Logger logger = Logger.getLogger(BattleshipFrame.class.getName());
+	private static final Logger logger = Logger.getLogger(BattleshipFrame.class
+			.getName());
 
-    /**
-     * The WaitingController for use with the battleship game.
-     */
-    private WaitingController   waiting;
+	/**
+	 * The WaitingController for use with the battleship game.
+	 */
+	private WaitingController waiting;
 
-    private JPanel              currentView;
+	/**
+	 * The current view being displayed.
+	 */
+	private JPanel currentView;
 
-    public BattleshipFrame() {
+	public BattleshipFrame() {
 
-        BattleGrid gridA = new BattleGridImpl();
-        BattleGrid gridB = new BattleGridImpl();
-        Player playerA = new PlayerImpl("Player 1");
-        Player playerB = new PlayerImpl("Player 2");
+		BattleGrid gridA = new BattleGridImpl();
+		BattleGrid gridB = new BattleGridImpl();
+		Player playerA = new PlayerImpl("Player 1");
+		Player playerB = new PlayerImpl("Player 2");
 
-        waiting = new WaitingControllerImpl(this, playerB, gridB, playerA, gridA);
+		waiting = new WaitingControllerImpl(this, playerB, gridB, playerA,
+				gridA);
 
-        this.setTitle("Battleship!");
-        this.setSize(800, 600);
-        this.pack();
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Battleship!");
+		this.setSize(800, 600);
+		this.pack();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        logger.finer("Created Frame.");
-    }
+		logger.finer("Created Frame.");
+	}
 
-    /**
-     * Creates a view for Ship placement.
-     */
-    private void createPlacementView() {
-        PlacementController placing = waiting.switchPlacementPlayer();
+	/**
+	 * Creates a view for Ship placement.
+	 */
+	private void createPlacementView() {
+		PlacementController placing = waiting.switchPlacementPlayer();
 
-        PlacementView view = new PlacementView(placing, waiting.getActiveGrid());
+		PlacementView view = new PlacementView(placing, waiting.getActiveGrid());
 
-        this.currentView = view;
-        this.setContentPane(view);
+		this.currentView = view;
+		this.setContentPane(view);
 
-        logger.finer("Created Placement View");
-    }
+		logger.finer("Created Placement View");
+	}
 
-    private void createWaitingView() {
-        WaitingView view = new WaitingView(waiting);
+	/**
+	 * Creates a view for transitioning between Players.
+	 */
+	private void createWaitingView() {
+		WaitingView view = new WaitingView(waiting);
 
-        this.currentView = view;
-        this.setContentPane(view);
+		this.currentView = view;
+		this.setContentPane(view);
 
-        logger.finer("Created Waiting View");
-    }
+		logger.finer("Created Waiting View");
+	}
 
-    private void createFiringView() {
-        FiringController firing = waiting.switchFiringPlayer();
+	/**
+	 * Creates a view for firing on opponent's grid.
+	 */
+	private void createFiringView() {
+		FiringController firing = waiting.switchFiringPlayer();
 
-        FiringView view = new FiringView(waiting, firing);
+		FiringView view = new FiringView(waiting, firing);
 
-        this.currentView = view;
-        this.setContentPane(view);
+		this.currentView = view;
+		this.setContentPane(view);
 
-        logger.finer("Created Firing View");
-    }
+		logger.finer("Created Firing View");
+	}
 
-    public void start() {
-        createPlacementView();
-    }
+	public void start() {
+		createPlacementView();
+	}
 
-    @SuppressWarnings("rawtypes")
-    public void switchView(Class nextView) {
-        this.currentView.setVisible(false);
+	/**
+	 * Switches the current view to nextView.
+	 * 
+	 * @param nextView
+	 *            the view to be switched to.
+	 */
+	@SuppressWarnings("rawtypes")
+	public void switchView(Class nextView) {
+		this.currentView.setVisible(false);
 
-        if (WaitingView.class == nextView) {
-            createWaitingView();
-        } else if (PlacementView.class == nextView) {
-            createPlacementView();
-        } else if (FiringView.class == nextView) {
-            createFiringView();
-        } else {
-            throw new IllegalArgumentException("Unexpected view class: "
-                    + nextView.toString());
-        }
+		if (WaitingView.class == nextView) {
+			createWaitingView();
+		} else if (PlacementView.class == nextView) {
+			createPlacementView();
+		} else if (FiringView.class == nextView) {
+			createFiringView();
+		} else {
+			throw new IllegalArgumentException("Unexpected view class: "
+					+ nextView.toString());
+		}
 
-    }
+	}
 }
