@@ -9,6 +9,7 @@ import models.BattleGrid;
 import models.BattleGridImpl;
 import models.Player;
 import models.PlayerImpl;
+import controllers.FiringController;
 import controllers.PlacementController;
 import controllers.WaitingController;
 import controllers.WaitingControllerImpl;
@@ -65,12 +66,14 @@ public final class BattleshipFrame extends JFrame {
     }
 
     private void createFiringView() {
-        // WaitingView view = new WaitingView(waiting);
-        //
-        // this.currentView = view;
-        // this.setContentPane(view);
-        //
-        // logger.finer("Created Firing View");
+        FiringController firing = waiting.switchFiringPlayer();
+
+        FiringView view = new FiringView(waiting, firing);
+
+        this.currentView = view;
+        this.setContentPane(view);
+
+        logger.finer("Created Firing View");
     }
 
     public void start() {
