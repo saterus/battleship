@@ -43,6 +43,7 @@ public class BattleGridView extends JPanel {
             BattleGridSquare sq = (BattleGridSquare) square;
             sq.setSquareBackground(grid);
         }
+        logger.finest("Redrawing Square Backgrounds.");
     }
 
 }

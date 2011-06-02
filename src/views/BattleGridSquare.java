@@ -70,14 +70,14 @@ public class BattleGridSquare extends JPanel {
             public void mouseClicked(MouseEvent e) {
 
                 boolean placementSuccess = con.setShipPos(x, y);
-
-                if (placementSuccess) {
-                    gView.redrawSquareBackgrounds(grid);
-                    con.disableSelectedShipType();
-                }
-
+                
                 logger.finer("Successful placed ship at (" + x + "," + y + ")?"
                         + placementSuccess);
+
+                if (placementSuccess) {                    
+                    con.disableSelectedShipType();
+                    gView.redrawSquareBackgrounds(grid);
+                }
             }
         });
     }

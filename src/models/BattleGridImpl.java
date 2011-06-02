@@ -1,5 +1,7 @@
 package models;
 
+import java.util.logging.Logger;
+
 /**
  * BattleGrid implemented as a triple array.
  * 
@@ -9,6 +11,8 @@ package models;
  * @author Group c421aa06
  */
 public final class BattleGridImpl implements BattleGrid {
+    
+    private static final Logger logger = Logger.getLogger(BattleGridImpl.class.getName());
 
     /**
      * BOARD_L is the length of the grid.
@@ -39,6 +43,7 @@ public final class BattleGridImpl implements BattleGrid {
 
     public BattleGridImpl() {
         gridSpace = new boolean[BOARD_L][BOARD_L][2];
+        logger.finest("Created BattleGrid.");
     }
 
     @Override
@@ -57,6 +62,8 @@ public final class BattleGridImpl implements BattleGrid {
                 gridSpace[x][y + i][0] = true;
             }
         }
+        
+        logger.fine("Set ship at (" + x + "," + y + ")");
     }
 
     @Override
@@ -66,6 +73,8 @@ public final class BattleGridImpl implements BattleGrid {
             gridSpace[x][y][1] = true;
             didHit = true;
         }
+        
+        logger.fine("Shot at (" + x + "," + y + "). Hit? " + didHit);
         return didHit;
     }
 

@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import models.BattleGrid;
 import models.ShipImpl;
@@ -17,38 +18,41 @@ import views.ShipTypeSelector;
  */
 public final class PlacementControllerImpl implements PlacementController {
 
+    private static final Logger logger        = Logger.getLogger(
+            PlacementControllerImpl.class.getName());
+
     /**
      * The current grid being placed on by the current player. Mutates with
      * every successful placement.
      */
-    private BattleGrid        grid;
+    private BattleGrid          grid;
 
     /**
      * The current type of Ship to be placed.
      */
-    private ShipType          currentShipType;
+    private ShipType            currentShipType;
 
     /**
      * The current orientation of the Ship to be placed on the grid. True
      * correlates to an orientation along the x-axis, and false correlates to
      * orientation along the y-axis.
      */
-    private boolean           curOrientation;
+    private boolean             curOrientation;
 
     /**
      * The ShipTypes that have not yet been placed.
      */
-    private Set<ShipType>     shipTypesLeft = new HashSet<ShipType>();
+    private Set<ShipType>       shipTypesLeft = new HashSet<ShipType>();
 
     /**
      * The ShipTypeSelector to be used with Ship placement.
      */
-    private ShipTypeSelector  selector;
+    private ShipTypeSelector    selector;
 
     /**
      * The WaitingController to be used with Ship placement.
      */
-    private WaitingController waiting;
+    private WaitingController   waiting;
 
     /**
      * Sets up the PlacementControllerImpl with a BattleGrid. Legal placements
@@ -80,9 +84,11 @@ public final class PlacementControllerImpl implements PlacementController {
                 || !this.grid.boundsCheck(x, y)
                 || (this.curOrientation && !this.grid.boundsCheck(x
                         + this.currentShipType.length(), y))
-                || (!this.curOrientation && !this.grid.boundsCheck(x, 
-                        y + this.currentShipType.length()))) {
-            
+                || (!this.curOrientation && !this.grid.boundsCheck(x, y
+                        + this.currentShipType.length()))) {
+
+            logger.finest("Attempted out of bounds ship placement.");
+
             return false;
         }
 
@@ -99,7 +105,10 @@ public final class PlacementControllerImpl implements PlacementController {
         }
 
         if (validPlacement) {
-            grid.setShipPos(new ShipImpl(currentShipType), x, y, curOrientation);
+            this.grid.setShipPos(new ShipImpl(this.currentShipType), x, y,
+                    this.curOrientation);
+        } else {
+            logger.fine("Attempted to place on top of an existing ship.");
         }
 
         return validPlacement;
@@ -107,24 +116,36 @@ public final class PlacementControllerImpl implements PlacementController {
 
     @Override
     public void setSelectedShipType(ShipType type) {
-        currentShipType = type;
+        logger.finest("Set ShipType: " + type + ".");
+        this.currentShipType = type;
     }
 
     @Override
     public void disableSelectedShipType() {
+        logger.fine("Disabling " + this.currentShipType.toString() + ".");
+        
         this.shipTypesLeft.remove(this.currentShipType);
         this.selector.disableShipButton(this.currentShipType);
         this.currentShipType = null;
+        
+        if(0 == this.shipTypesLeft.size()) {
+            logger.fine("Switching players.");
+            this.waiting.switchPlacementPlayer();
+        }
     }
 
     @Override
     public void registerShipTypeSelector(ShipTypeSelector selector) {
+        logger.finest("Registered ShipTypeSelector.");
+        
         this.selector = selector;
     }
 
     @Override
     public void rotateShip() {
-        curOrientation = !curOrientation;
+        logger.finest("Rotated Ship Placement: " + this.curOrientation + ".");
+        
+        this.curOrientation = !this.curOrientation;
 
     }
 
