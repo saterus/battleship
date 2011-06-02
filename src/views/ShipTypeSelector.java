@@ -2,6 +2,7 @@ package views;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,6 +17,9 @@ import controllers.PlacementController;
  * Battleship grid.
  */
 public final class ShipTypeSelector extends JPanel {
+    
+    private static final Logger logger = Logger.getLogger(ShipTypeSelector.class
+            .getName());
 
 	/**
 	 * Serial Version ID.
@@ -36,15 +40,19 @@ public final class ShipTypeSelector extends JPanel {
 	 */
 	public ShipTypeSelector(PlacementController pc) {
 		pc.registerShipTypeSelector(this);
+		buttonMap = new HashMap<ShipType, JButton>();
+		
 		this.add(new JLabel("Ships"));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		buttonMap = new HashMap<ShipType, JButton>();
+		
 		for (ShipType s : ShipType.values()) {
 			JButton ship = new JButton(s.toString());
 			ship.addMouseListener(new MouseSelectShipType(pc, s));
 			this.add(ship);
 			buttonMap.put(s, ship);
 		}
+		
+		logger.finest("Created ShipTypeSeletor.");
 	}
 
 	/**
@@ -57,5 +65,6 @@ public final class ShipTypeSelector extends JPanel {
 
 	public void disableShipButton(ShipType s) {
 		buttonMap.get(s).setEnabled(false);
+		logger.finer("Disabled " + s.toString() + " Button");
 	}
 }

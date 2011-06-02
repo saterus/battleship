@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Logger;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,6 +13,8 @@ import javax.swing.JPanel;
 import controllers.WaitingController;
 
 public final class WaitingView extends JPanel {
+    
+    private static final Logger logger = Logger.getLogger(WaitingView.class.getName());
 
     private final WaitingController controller;
 
@@ -32,8 +35,11 @@ public final class WaitingView extends JPanel {
         
         this.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                logger.fine("Finished waiting. Next screen.");
                 controller.nextScreen();
             }            
         });
+        
+        logger.finer("Waiting on " + this.controller.getActivePlayer().getPlayerName());
     }
 }
