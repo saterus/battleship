@@ -31,11 +31,24 @@ public interface WaitingController {
 	 *         defending.
 	 */
 	FiringController switchFiringPlayer();
-	
+
+	/**
+	 * Switches the game view to the next sequential screen display.
+	 */
 	void nextScreen();
-	
+
+	/**
+	 * Retrieves the active BattleGrid.
+	 * 
+	 * @return the BattleGrid that is currently active.
+	 */
 	BattleGrid getActiveGrid();
-	
+
+	/**
+	 * Retrieves the active Player.
+	 * 
+	 * @return the Player that is currently active.
+	 */
 	Player getActivePlayer();
 
 }

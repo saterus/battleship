@@ -41,9 +41,16 @@ public final class WaitingControllerImpl implements WaitingController {
 	 * The grid owned by the inactive player.
 	 */
 	private BattleGrid inactiveGrid;
-	
+
+	/**
+	 * The list maintaining the view sequence.
+	 */
 	@SuppressWarnings("rawtypes")
-    private final List<Class> viewSequence;
+	private final List<Class> viewSequence;
+
+	/**
+	 * Counter to track the current position in the screen sequence.
+	 */
 	private int sequenceCounter = 0;
 
 	/**
@@ -61,11 +68,11 @@ public final class WaitingControllerImpl implements WaitingController {
 	 *            the currently inactive grid.
 	 */
 	@SuppressWarnings("rawtypes")
-    public WaitingControllerImpl(BattleshipFrame battleship,
+	public WaitingControllerImpl(BattleshipFrame battleship,
 			Player currentPlayer, BattleGrid currentGrid,
 			Player inactivePlayer, BattleGrid inactiveGrid) {
 		this.battleship = battleship;
-		
+
 		this.viewSequence = new ArrayList<Class>();
 		this.viewSequence.add(PlacementView.class);
 		this.viewSequence.add(WaitingView.class);
@@ -94,27 +101,27 @@ public final class WaitingControllerImpl implements WaitingController {
 
 		return new FiringControllerImpl(this, this.currentGrid);
 	}
-	
+
 	@Override
 	public void nextScreen() {
-	    if(sequenceCounter == viewSequence.indexOf(FiringView.class)) {
-	        sequenceCounter--;
-	    } else {
-	        sequenceCounter++;
-	    }
-	    
-	    this.battleship.switchView(viewSequence.get(sequenceCounter));
+		if (sequenceCounter == viewSequence.indexOf(FiringView.class)) {
+			sequenceCounter--;
+		} else {
+			sequenceCounter++;
+		}
+
+		this.battleship.switchView(viewSequence.get(sequenceCounter));
 	}
-	
-    @Override
-    public BattleGrid getActiveGrid() {
-        return this.currentGrid;
-    }
-    
-    @Override
-    public Player getActivePlayer() {
-        return this.currentPlayer;
-    }
+
+	@Override
+	public BattleGrid getActiveGrid() {
+		return this.currentGrid;
+	}
+
+	@Override
+	public Player getActivePlayer() {
+		return this.currentPlayer;
+	}
 
 	/**
 	 * Swaps the current player and the inactive player member variables, as

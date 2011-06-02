@@ -10,7 +10,17 @@ import javax.swing.JPanel;
 import models.BattleGrid;
 import controllers.PlacementController;
 
+/**
+ * This class implements the view of each square making up the BattleGrid.
+ * 
+ * @author Group c421aa06
+ */
 public class BattleGridSquare extends JPanel {
+
+	/**
+	 * Serial Version ID.
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * A logger for the BattleGridSquare class.
@@ -18,99 +28,99 @@ public class BattleGridSquare extends JPanel {
 	private static final Logger logger = Logger
 			.getLogger(BattleGridSquare.class.getName());
 
-    /**
-     * The x-position of the grid square in the grid starting from the left.
-     */
-    private final int           x;
+	/**
+	 * The x-position of the grid square in the grid starting from the left.
+	 */
+	private final int x;
 
-    /**
-     * The y-position of the grid square in the grid starting from the top.
-     */
-    private final int           y;
+	/**
+	 * The y-position of the grid square in the grid starting from the top.
+	 */
+	private final int y;
 
-    /**
-     * Color of grid squares that have not been shot on the opponent's grid.
-     */
-    private static final Color  FOG    = Color.LIGHT_GRAY;
+	/**
+	 * Color of grid squares that have not been shot on the opponent's grid.
+	 */
+	private static final Color FOG = Color.LIGHT_GRAY;
 
-    /**
-     * Color of grid squares that hold a Ship and have been shot.
-     */
-    private static final Color  HIT    = Color.RED;
+	/**
+	 * Color of grid squares that hold a Ship and have been shot.
+	 */
+	private static final Color HIT = Color.RED;
 
-    /**
-     * Color of grid squares that have been shot and hold no Ship.
-     */
-    private static final Color  WATER  = Color.BLUE;
+	/**
+	 * Color of grid squares that have been shot and hold no Ship.
+	 */
+	private static final Color WATER = Color.BLUE;
 
-    /**
-     * Color of grid squares that hold a Ship that have not been shot on the
-     * player's own grid.
-     */
-    private static final Color  SHIP   = Color.DARK_GRAY;
+	/**
+	 * Color of grid squares that hold a Ship that have not been shot on the
+	 * player's own grid.
+	 */
+	private static final Color SHIP = Color.DARK_GRAY;
 
-    /**
-     * Constructor that defines the position of the BattleGridSquare to be x,y.
-     * 
-     * @param x
-     *            the x-coordinate of the BattleGridSquare, starting from the
-     *            left.
-     * @param y
-     *            the y-coordinate of the BattleGridSquare, starting from the
-     *            top.
-     */
-    public BattleGridSquare(int x, int y) {
-        this.x = x;
-        this.y = y;
+	/**
+	 * Constructor that defines the position of the BattleGridSquare to be x,y.
+	 * 
+	 * @param x
+	 *            the x-coordinate of the BattleGridSquare, starting from the
+	 *            left.
+	 * @param y
+	 *            the y-coordinate of the BattleGridSquare, starting from the
+	 *            top.
+	 */
+	public BattleGridSquare(int x, int y) {
+		this.x = x;
+		this.y = y;
 
-        logger.finest("Created square (" + x + "," + y + ").");
-    }
+		logger.finest("Created square (" + x + "," + y + ").");
+	}
 
-    public void addPlacementClickListener(final BattleGridView gView,
-            final PlacementController con, final BattleGrid grid) {
+	public void addPlacementClickListener(final BattleGridView gView,
+			final PlacementController con, final BattleGrid grid) {
 
-        this.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 
-                boolean placementSuccess = con.setShipPos(x, y);
-                
-                logger.finer("Successful placed ship at (" + x + "," + y + ")?"
-                        + placementSuccess);
+				boolean placementSuccess = con.setShipPos(x, y);
 
-                if (placementSuccess) {                    
-                    con.disableSelectedShipType();
-                    gView.redrawSquareBackgrounds(grid);
-                }
-            }
-        });
-    }
+				logger.finer("Successful placed ship at (" + x + "," + y + ")?"
+						+ placementSuccess);
 
-    public void setSquareBackground(BattleGrid grid) {
-        Color currentColor;
+				if (placementSuccess) {
+					con.disableSelectedShipType();
+					gView.redrawSquareBackgrounds(grid);
+				}
+			}
+		});
+	}
 
-        if (grid.getPlayerState()) { // active player owns this grid.
+	public void setSquareBackground(BattleGrid grid) {
+		Color currentColor;
 
-            if (grid.isShip(this.x, this.y)) {
-                currentColor = BattleGridSquare.SHIP;
-            } else {
-                currentColor = BattleGridSquare.WATER;
-            }
+		if (grid.getPlayerState()) { // active player owns this grid.
 
-        } else if (grid.isViewable(this.x, this.y)) {
+			if (grid.isShip(this.x, this.y)) {
+				currentColor = BattleGridSquare.SHIP;
+			} else {
+				currentColor = BattleGridSquare.WATER;
+			}
 
-            if (grid.isShip(this.x, this.y)) {
-                currentColor = BattleGridSquare.HIT;
-            } else {
-                currentColor = BattleGridSquare.WATER;
-            }
+		} else if (grid.isViewable(this.x, this.y)) {
 
-        } else {
-            currentColor = BattleGridSquare.FOG;
-        }
+			if (grid.isShip(this.x, this.y)) {
+				currentColor = BattleGridSquare.HIT;
+			} else {
+				currentColor = BattleGridSquare.WATER;
+			}
 
-        this.setBackground(currentColor);
+		} else {
+			currentColor = BattleGridSquare.FOG;
+		}
+
+		this.setBackground(currentColor);
 
 		logger.finer("Set bg color at (" + x + "," + y + "):"
 				+ currentColor.toString());
-    }
+	}
 }
