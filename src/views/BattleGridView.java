@@ -29,7 +29,7 @@ public final class BattleGridView extends JPanel {
 			.getName());
 
 	/** Size of the grid used by the game. */
-	private final int GRID_SIZE;
+	private final int gridSize;
 
 	/** Grid gap size in pixels. */
 	private static final int GRID_GAP = 3;
@@ -44,13 +44,10 @@ public final class BattleGridView extends JPanel {
 	 *            the BattleGrid to be used by the BattleGridView.
 	 */
 	public BattleGridView(PlacementController con, BattleGrid grid) {
-
-		GRID_SIZE = grid.gridSize();
-
-		this.setLayout(new GridLayout(GRID_SIZE, GRID_SIZE, GRID_GAP, GRID_GAP));
-
-		for (int i = 0; i < GRID_SIZE; i++) {
-			for (int j = 0; j < GRID_SIZE; j++) {
+		this.gridSize = grid.gridSize();
+		this.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+		for (int i = 0; i < gridSize; i++) {
+			for (int j = 0; j < gridSize; j++) {
 				BattleGridSquare square = new BattleGridSquare(i, j);
 				square.addPlacementClickListener(this, con, grid);
 				this.add(square);
