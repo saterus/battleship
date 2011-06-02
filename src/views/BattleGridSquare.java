@@ -12,8 +12,11 @@ import controllers.PlacementController;
 
 public class BattleGridSquare extends JPanel {
 
-    private static final Logger logger = Logger.getLogger(BattleGridSquare.class
-                                               .getName());
+	/**
+	 * A logger for the BattleGridSquare class.
+	 */
+	private static final Logger logger = Logger
+			.getLogger(BattleGridSquare.class.getName());
 
     /**
      * The x-position of the grid square in the grid starting from the left.
@@ -107,6 +110,7 @@ public class BattleGridSquare extends JPanel {
 
         this.setBackground(currentColor);
 
-        logger.finer("Set bg color at (" + x + "," + y + "):" + currentColor.toString());
+		logger.finer("Set bg color at (" + x + "," + y + "):"
+				+ currentColor.toString());
     }
 }

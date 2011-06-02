@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 import controllers.WaitingController;
 
-public class WaitingView extends JPanel {
+public final class WaitingView extends JPanel {
 
     private WaitingController   controller;
 

@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 import models.BattleGrid;
 import controllers.PlacementController;
 
-public class PlacementView extends JPanel {
-    
+public final class PlacementView extends JPanel {
+
     public PlacementView(PlacementController placing, BattleGrid activeGrid) {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.add(new BattleGridView(placing, activeGrid));
@@ -18,5 +18,6 @@ public class PlacementView extends JPanel {
         rightSide.add(new ShipTypeSelector(placing));
         rightSide.add(new OrientationSelector(placing));
     }
+
 
 }

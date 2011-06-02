@@ -13,7 +13,7 @@ import controllers.PlacementController;
 import controllers.WaitingController;
 import controllers.WaitingControllerImpl;
 
-public class BattleshipFrame extends JFrame {
+public final class BattleshipFrame extends JFrame {
 
     private static final Logger logger = Logger.getLogger(BattleshipFrame.class.getName());
 

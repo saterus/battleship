@@ -1,5 +1,5 @@
 package views;
 
-public class FiringView {
+public final class FiringView {
 
 }

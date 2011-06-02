@@ -9,15 +9,19 @@ import javax.swing.JPanel;
 import models.BattleGrid;
 import controllers.PlacementController;
 
-public class BattleGridView extends JPanel {
+public final class BattleGridView extends JPanel {
     
-    private static final Logger logger = Logger.getLogger(BattleGridView.class.getName());
+	/**
+	 * A logger for use with the BattleGridView class.
+	 */
+	private static final Logger logger = Logger.getLogger(BattleGridView.class
+			.getName());
 
     /** Size of the grid used by the game. */
     private final int        GRID_SIZE;
 
     /** Grid gap size in pixels. */
-    private final static int GRID_GAP = 3;
+	private static final int GRID_GAP = 3;
 
     public BattleGridView(PlacementController con, BattleGrid grid) {
 
@@ -30,20 +34,23 @@ public class BattleGridView extends JPanel {
                 BattleGridSquare square = new BattleGridSquare(i, j);
                 square.addPlacementClickListener(this, con, grid);
                 this.add(square);
-                
                 square.setSquareBackground(grid);
             }
         }
-        
         logger.finer("Created BattleGridView");
     }
     
+	/**
+	 * Updates the background colors for each aquare in the grid.
+	 * 
+	 * @param grid
+	 *            the grid to be updated.
+	 */
     public void redrawSquareBackgrounds(BattleGrid grid) {
-        for(Component square : this.getComponents()) {
+		for (Component square : this.getComponents()) {
             BattleGridSquare sq = (BattleGridSquare) square;
             sq.setSquareBackground(grid);
         }
         logger.finest("Redrawing Square Backgrounds.");
     }
-
 }
