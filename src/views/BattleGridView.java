@@ -9,7 +9,18 @@ import javax.swing.JPanel;
 import models.BattleGrid;
 import controllers.PlacementController;
 
+/**
+ * This class implements the BattleGridView, containing the BattleGridSquares
+ * for each player.
+ * 
+ * @author Group c421aa06
+ */
 public final class BattleGridView extends JPanel {
+
+	/**
+	 * Serial Version ID.
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * A logger for use with the BattleGridView class.
@@ -23,6 +34,15 @@ public final class BattleGridView extends JPanel {
 	/** Grid gap size in pixels. */
 	private static final int GRID_GAP = 3;
 
+	/**
+	 * Constructor that initializes the BattleGridView with the given
+	 * PlacementController and BattleGrid.
+	 * 
+	 * @param con
+	 *            the PlacementController to be used with the BattleGridView.
+	 * @param grid
+	 *            the BattleGrid to be used by the BattleGridView.
+	 */
 	public BattleGridView(PlacementController con, BattleGrid grid) {
 
 		GRID_SIZE = grid.gridSize();

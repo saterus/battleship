@@ -27,6 +27,16 @@ public final class BattleshipFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * The height of the BattleShipFrame.
+	 */
+	private static final int HEIGHT = 800;
+
+	/**
+	 * THe width of the BattleShipFrame.
+	 */
+	private static final int WIDTH = 600;
+
+	/**
 	 * A logger for use with the BattleshipFrame class.
 	 */
 	private static final Logger logger = Logger.getLogger(BattleshipFrame.class
@@ -57,7 +67,7 @@ public final class BattleshipFrame extends JFrame {
 				gridA);
 
 		this.setTitle("Battleship!");
-		this.setSize(800, 600);
+		this.setSize(WIDTH, HEIGHT);
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

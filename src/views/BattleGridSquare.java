@@ -15,7 +15,7 @@ import controllers.PlacementController;
  * 
  * @author Group c421aa06
  */
-public class BattleGridSquare extends JPanel {
+public final class BattleGridSquare extends JPanel {
 
 	/**
 	 * Serial Version ID.
@@ -31,12 +31,12 @@ public class BattleGridSquare extends JPanel {
 	/**
 	 * The x-position of the grid square in the grid starting from the left.
 	 */
-	private final int x;
+	private int x;
 
 	/**
 	 * The y-position of the grid square in the grid starting from the top.
 	 */
-	private final int y;
+	private int y;
 
 	/**
 	 * Color of grid squares that have not been shot on the opponent's grid.
@@ -76,6 +76,16 @@ public class BattleGridSquare extends JPanel {
 		logger.finest("Created square (" + x + "," + y + ").");
 	}
 
+	/**
+	 * Adds a click listener for use in placing Ships on the grid.
+	 * 
+	 * @param gView
+	 *            the BattleGridView containing the grid to place Ships on.
+	 * @param con
+	 *            the PlacementController used to place the Ships.
+	 * @param grid
+	 *            the grid on which the Ships are being placed.
+	 */
 	public void addPlacementClickListener(final BattleGridView gView,
 			final PlacementController con, final BattleGrid grid) {
 
@@ -95,6 +105,12 @@ public class BattleGridSquare extends JPanel {
 		});
 	}
 
+	/**
+	 * Sets the color of the BattleGridSquare.
+	 * 
+	 * @param grid
+	 *            the BattleGrid containing the square to change the color of.
+	 */
 	public void setSquareBackground(BattleGrid grid) {
 		Color currentColor;
 

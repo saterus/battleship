@@ -26,6 +26,15 @@ public final class PlacementView extends JPanel {
 	private static final Logger logger = Logger.getLogger(PlacementView.class
 			.getName());
 
+	/**
+	 * Constructor which generates a PlacementView for placing Ships on the
+	 * active grid.
+	 * 
+	 * @param placing
+	 *            the PlacementController to be used with the PlacementView.
+	 * @param activeGrid
+	 *            the BattleGrid to place Ships on.
+	 */
 	public PlacementView(PlacementController placing, BattleGrid activeGrid) {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.add(new BattleGridView(placing, activeGrid));
