@@ -15,11 +15,16 @@ import controllers.PlacementController;
 /**
  * This will create the JPanel for the ship selector when placing ships on the
  * Battleship grid.
+ * 
+ * @author Group c421aa06
  */
 public final class ShipTypeSelector extends JPanel {
-    
-    private static final Logger logger = Logger.getLogger(ShipTypeSelector.class
-            .getName());
+
+	/**
+	 * A logger for use with the ShipTypeSelector class.
+	 */
+	private static final Logger logger = Logger
+			.getLogger(ShipTypeSelector.class.getName());
 
 	/**
 	 * Serial Version ID.
@@ -41,17 +46,17 @@ public final class ShipTypeSelector extends JPanel {
 	public ShipTypeSelector(PlacementController pc) {
 		pc.registerShipTypeSelector(this);
 		buttonMap = new HashMap<ShipType, JButton>();
-		
+
 		this.add(new JLabel("Ships"));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
+
 		for (ShipType s : ShipType.values()) {
 			JButton ship = new JButton(s.toString());
 			ship.addMouseListener(new MouseSelectShipType(pc, s));
 			this.add(ship);
 			buttonMap.put(s, ship);
 		}
-		
+
 		logger.finest("Created ShipTypeSeletor.");
 	}
 

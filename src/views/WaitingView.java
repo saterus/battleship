@@ -12,34 +12,70 @@ import javax.swing.JPanel;
 
 import controllers.WaitingController;
 
+/**
+ * Implements a view for use with Battleship that manages the transitions
+ * between players' turns.
+ * 
+ * @author Group c421aa06
+ */
 public final class WaitingView extends JPanel {
-    
-    private static final Logger logger = Logger.getLogger(WaitingView.class.getName());
 
-    private final WaitingController controller;
+	/**
+	 * A logger for use with the WaitingView class.
+	 */
+	private static final Logger logger = Logger.getLogger(WaitingView.class
+			.getName());
 
-    private final JLabel            label;
+	/**
+	 * The end of the message displayed on the screen by the WaitingView.
+	 */
+	private static final String MESSAGE_SUFFIX = " click when Ready";
 
-    private final static String     messageSuffix = " click when Ready";
+	/**
+	 * The width of the label used.
+	 */
+	private static final int WIDTH = 200;
 
-    public WaitingView(WaitingController con) {
-        this.controller = con;
+	/**
+	 * The height of the label used.
+	 */
+	private static final int HEIGHT = 100;
 
-        this.setLayout(new GridBagLayout());
+	/**
+	 * The WaitingController used to control the WaitingView.
+	 */
+	private final WaitingController controller;
 
-        label = new JLabel(this.controller.getActivePlayer().getPlayerName()
-                + WaitingView.messageSuffix);
-        label.setPreferredSize(new Dimension(200, 100));
+	/**
+	 * A JLabel object to be used by the WaitingView.
+	 */
+	private final JLabel label;
 
-        this.add(label, new GridBagConstraints());
-        
-        this.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                logger.fine("Finished waiting. Next screen.");
-                controller.nextScreen();
-            }            
-        });
-        
-        logger.finer("Waiting on " + this.controller.getActivePlayer().getPlayerName());
-    }
+	/**
+	 * Default constructor. Sets up the WaitingView.
+	 * 
+	 * @param con
+	 *            the WaitingController for use with this WaitingView.
+	 */
+	public WaitingView(WaitingController con) {
+		this.controller = con;
+
+		this.setLayout(new GridBagLayout());
+
+		label = new JLabel(this.controller.getActivePlayer().getPlayerName()
+				+ WaitingView.MESSAGE_SUFFIX);
+		label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
+		this.add(label, new GridBagConstraints());
+
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				logger.fine("Finished waiting. Next screen.");
+				controller.nextScreen();
+			}
+		});
+
+		logger.finer("Waiting on "
+				+ this.controller.getActivePlayer().getPlayerName());
+	}
 }
