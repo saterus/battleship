@@ -131,7 +131,7 @@ public final class BattleGridView extends JPanel {
 
 		for (int i = 0; i < gridSize; i++) {
 			for (int j = 0; j < gridSize; j++) {
-				BattleGridSquare square = new BattleGridSquare(i, j);
+				BattleGridSquare square = new BattleGridSquare(j, i);
 				container.add(square);
 				square.setSquareBackground(grid);
 			}
