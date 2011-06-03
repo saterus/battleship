@@ -40,7 +40,7 @@ public final class PlacementControllerImpl implements PlacementController {
 	 * correlates to an orientation along the x-axis, and false correlates to
 	 * orientation along the y-axis.
 	 */
-	private boolean curOrientation;
+	private boolean curOrientation = true;
 
 	/**
 	 * The ShipTypes that have not yet been placed.
@@ -87,7 +87,7 @@ public final class PlacementControllerImpl implements PlacementController {
 		if (null == this.currentShipType
 				|| !this.grid.boundsCheck(x, y)
 				|| (this.curOrientation && !this.grid.boundsCheck(x
-						+ this.currentShipType.length(), y))
+						+ this.currentShipType.length() - 1, y))
 				|| (!this.curOrientation && !this.grid.boundsCheck(x, y
 						+ this.currentShipType.length()))) {
 
