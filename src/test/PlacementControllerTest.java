@@ -30,8 +30,8 @@ public class PlacementControllerTest {
 	public void setUp() {
 		player1 = new PlayerImpl("Player 1");
 		player2 = new PlayerImpl("Player 2");
-		grid1 = new BattleGridImpl();
-		grid2 = new BattleGridImpl();
+		grid1 = new BattleGridImpl(player1);
+		grid2 = new BattleGridImpl(player2);
 		frame = new BattleshipFrame();
 		wait = new WaitingControllerImpl(frame, player1, grid1, player2, grid2);
 		place = new PlacementControllerImpl(wait, grid1);

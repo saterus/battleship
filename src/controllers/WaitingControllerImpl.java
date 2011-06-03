@@ -144,6 +144,7 @@ public final class WaitingControllerImpl implements WaitingController {
     @Override
     public void setHasWon(boolean b) {
         this.hasWon = b;
+        this.inactiveGrid.setPlayerState(true); // so we see both grids as visible.
     }
 
     /**

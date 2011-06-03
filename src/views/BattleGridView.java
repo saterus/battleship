@@ -139,11 +139,6 @@ public final class BattleGridView extends JPanel {
 
 		LOGGER.finer("Created BattleGridView for Viewing");
 	}
-	
-    
-        
-        
-
 
 	/**
 	 * Updates the background colors for each square in the grid.
