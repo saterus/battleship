@@ -1,7 +1,7 @@
 package controllers;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import models.BattleGrid;
@@ -45,7 +45,7 @@ public final class PlacementControllerImpl implements PlacementController {
 	/**
 	 * The ShipTypes that have not yet been placed.
 	 */
-	private Set<ShipType> shipTypesLeft = new HashSet<ShipType>();
+	private List<ShipType> shipTypesLeft = new LinkedList<ShipType>();
 
 	/**
 	 * The ShipTypeSelector to be used with Ship placement.
@@ -76,6 +76,8 @@ public final class PlacementControllerImpl implements PlacementController {
 		shipTypesLeft.add(ShipType.DESTROYER);
 		// shipTypesLeft.add(ShipType.PATROL_BOAT);
 		// shipTypesLeft.add(ShipType.SUBMARINE);
+		
+		this.currentShipType = shipTypesLeft.get(0);
 	}
 
 	@Override
@@ -122,6 +124,7 @@ public final class PlacementControllerImpl implements PlacementController {
 	public void setSelectedShipType(ShipType type) {
 		LOGGER.finest("Set ShipType: " + type + ".");
 		this.currentShipType = type;
+		this.selector.setActiveButton(this.currentShipType);
 	}
 
 	@Override
@@ -135,6 +138,9 @@ public final class PlacementControllerImpl implements PlacementController {
 		if (0 == this.shipTypesLeft.size()) {
 			LOGGER.fine("Switching players.");
 			this.waiting.nextScreen(null);
+		} else {
+		    this.currentShipType = this.shipTypesLeft.get(0);
+		    this.selector.setActiveButton(this.currentShipType);
 		}
 	}
 
