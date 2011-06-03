@@ -23,8 +23,8 @@ public interface FiringController {
 	 *            the x-coordinate of the registered shot.
 	 * @param y
 	 *            the y-coordinate of the registered shot.
-	 * @return {@code HIT} if the shot hit a Ship, {@code SUNK} if it hit and sunk a ship,
-     * and {@code MISS} otherwise.
+	 * @return {@code HIT} if the shot hit a Ship, {@code SUNK} if it hit and
+	 *         sunk a ship, and {@code MISS} otherwise.
 	 */
 	Ship.HitStatus fireShot(int x, int y);
 
@@ -40,9 +40,17 @@ public interface FiringController {
 	 *         {@code false} otherwise.
 	 */
 	boolean isShootable(int x, int y);
-	
+
+	/**
+	 * Retrieves the BattleGrid to be targeted.
+	 * 
+	 * @return the BattleGrid to be fired upon.
+	 */
 	BattleGrid getTarget();
-	
+
+	/**
+	 * Signals the end of the current player's turn.
+	 */
 	void endTurn();
 
 }

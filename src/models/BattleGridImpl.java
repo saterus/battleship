@@ -96,7 +96,8 @@ public final class BattleGridImpl implements BattleGrid {
 
         gridSpaces[x][y].makeVisible();
 
-        LOGGER.fine("Shot at (" + x + "," + y + "). Hit? " + shotStatus.toString());
+		LOGGER.fine("Shot at (" + x + "," + y + "). Hit? "
+				+ shotStatus.toString());
         return shotStatus;
     }
 
@@ -140,36 +141,77 @@ public final class BattleGridImpl implements BattleGrid {
         return isActive;
     }
 
+	/**
+	 * Inner class which represents a square in the BattleGridImpl.
+	 * 
+	 * @author Group c421aa06
+	 */
     private class GridSpace {
 
+		/**
+		 * The Ship, if any, residing at this grid space.
+		 */
         private Ship    ship;
 
+		/**
+		 * Boolean to define the visibility of a grid space. True means the
+		 * space is visible, false means it is not.
+		 */
         private boolean visible;
 
+		/**
+		 * Default constructor. Initializes the GridSpace to contain no Ship and
+		 * to be invisible.
+		 */
         public GridSpace() {
             this.ship = null;
             this.visible = false;
         }
 
+		/**
+		 * Returns whether or not the GridSpace is visible.
+		 * 
+		 * @return true is the GridSpace is visible, and false otherwise.
+		 */
         public boolean isVisible() {
             return this.visible;
         }
 
+		/**
+		 * Makes a GridSpace visible.
+		 */
         public void makeVisible() {
             this.visible = true;
         }
 
+		/**
+		 * Returns whether or not the GridSpace contains a Ship.
+		 * 
+		 * @return true is there is a Ship at the GridSpace, and false
+		 *         otherwise.
+		 */
         public boolean hasShip() {
             return null != this.ship;
         }
 
+		/**
+		 * Returns the Ship residing at the GridSpace.
+		 * 
+		 * @return the Ship residing at the GridSpace, or null if there is no
+		 *         Ship.
+		 */
         public Ship getShip() {
             return this.ship;
         }
 
+		/**
+		 * Assigns a Ship to the GridSpace.
+		 * 
+		 * @param s
+		 *            the Ship to be associated with the GridSpace.
+		 */
         public void setShip(Ship s) {
             this.ship = s;
         }
     }
-
 }
