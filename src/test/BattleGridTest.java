@@ -15,16 +15,17 @@ import org.junit.Test;
 
 public class BattleGridTest {
 	private BattleGrid grid;
+	private Player player;
 
 	@Before
 	public void setUp() {
-
+	    player = new PlayerImpl("Test Player");
 	}
 
 	// Default constructor
 	@Test
 	public void defaultConstructor() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		for (int x = 0; x < 10; x++) {
 			for (int y = 0; y < 10; y++) {
 				assertTrue("Viewable?", !grid.isViewable(x, y));
@@ -36,7 +37,7 @@ public class BattleGridTest {
 	// Set ship
 	@Test
 	public void setShip() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		Ship ship = new ShipImpl(ShipType.SUBMARINE);
 		grid.setShipPos(ship, 5, 5, true);
 		assertTrue("Ship1?", grid.isShip(5, 5));
@@ -47,7 +48,7 @@ public class BattleGridTest {
 	// Shoot ship
 	@Test
 	public void shootShip() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		Ship ship = new ShipImpl(ShipType.SUBMARINE);
 		grid.setShipPos(ship, 5, 5, true);
 		assertEquals("Shot 1", Ship.HitStatus.HIT, grid.shoot(5, 5));
@@ -59,7 +60,7 @@ public class BattleGridTest {
 	// Find ship type
 	@Test
 	public void findShipType() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		Ship ship1 = new ShipImpl(ShipType.SUBMARINE);
 		Ship ship2 = new ShipImpl(ShipType.BATTLESHIP);
 		grid.setShipPos(ship1, 5, 5, true);
@@ -72,7 +73,7 @@ public class BattleGridTest {
 	// Find ships remaining
 	@Test
 	public void shipsRemaining() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		assertTrue("No ships initially", !grid.shipsRemaining());
 		Ship ship = new ShipImpl(ShipType.SUBMARINE);
 		grid.setShipPos(ship, 5, 5, true);
@@ -86,7 +87,7 @@ public class BattleGridTest {
 	// Check bounds
 	@Test
 	public void checkBounds() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		assertTrue("Bounds check low edge", grid.boundsCheck(0, 0));
 		assertTrue("Bounds check upper edge", grid.boundsCheck(9, 9));
 		assertTrue("Bounds check middle", grid.boundsCheck(5, 5));
@@ -97,14 +98,21 @@ public class BattleGridTest {
 	// Check grid size
 	@Test
 	public void checkGridSize() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		assertEquals("Check grid size", 10, grid.gridSize());
 	}
+	
+	   // Check player
+    @Test
+    public void checkPlayer() {
+        grid = new BattleGridImpl(player);
+        assertEquals("Check player", player, grid.getPlayer());
+    }
 	
 	// Player status
 	@Test
 	public void checkPlayerStatus() {
-		grid = new BattleGridImpl();
+		grid = new BattleGridImpl(player);
 		grid.setPlayerState(true);
 		assertTrue("Active player", grid.getPlayerState());
 		grid.setPlayerState(false);

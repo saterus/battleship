@@ -46,12 +46,16 @@ public final class BattleGridImpl implements BattleGrid {
 	 */
 	private boolean isActive = false;
 
+    private final Player owningPlayer;
+
 	/**
 	 * Default constructor, which initializes the size of the grid.
 	 */
 
-	public BattleGridImpl() {
+	public BattleGridImpl(Player owner) {
 		gridSpaces = new GridSpace[BOARD_L][BOARD_L];
+		this.owningPlayer = owner;
+		
 		for (int i = 0; i < BOARD_L; i++) {
 			for (int j = 0; j < BOARD_L; j++) {
 				gridSpaces[i][j] = new GridSpace();
@@ -129,6 +133,11 @@ public final class BattleGridImpl implements BattleGrid {
 	@Override
 	public int gridSize() {
 		return BOARD_L;
+	}
+	
+	@Override
+	public Player getPlayer() {
+	    return this.owningPlayer;
 	}
 
 	@Override

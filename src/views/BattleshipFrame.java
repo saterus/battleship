@@ -58,10 +58,10 @@ public final class BattleshipFrame extends JFrame {
      */
     public BattleshipFrame() {
 
-        BattleGrid gridA = new BattleGridImpl();
-        BattleGrid gridB = new BattleGridImpl();
         Player playerA = new PlayerImpl("Player 1");
         Player playerB = new PlayerImpl("Player 2");
+        BattleGrid gridA = new BattleGridImpl(playerA);
+        BattleGrid gridB = new BattleGridImpl(playerB);
 
         waiting = new WaitingControllerImpl(this, playerB, gridB, playerA, gridA);
 

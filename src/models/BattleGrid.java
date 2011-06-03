@@ -118,6 +118,8 @@ public interface BattleGrid {
 	 * @return the dimension of one side of the grid.
 	 */
 	int gridSize();
+	
+	Player getPlayer();
 
 	/**
 	 * This will set the player as either active or inactive when playing
