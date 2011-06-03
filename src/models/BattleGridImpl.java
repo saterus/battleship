@@ -2,6 +2,8 @@ package models;
 
 import java.util.logging.Logger;
 
+import models.Ship.HitStatus;
+
 /**
  * BattleGrid implemented as a triple array.
  * 
@@ -15,14 +17,19 @@ public final class BattleGridImpl implements BattleGrid {
     /**
      * A LOGGER to be used with the BattleGridImpl class.
      */
-    private static final Logger LOGGER   = Logger.getLogger(BattleGridImpl.class
-                                                 .getName());
+    private static final Logger LOGGER              = Logger.getLogger(BattleGridImpl.class
+                                                            .getName());
 
     /**
      * BOARD_L is the length of the grid.
      */
+    private static final int    BOARD_L             = 10;
 
-    private static final int    BOARD_L  = 10;
+    /** The number of ships possible to place on a single grid. */
+    private static final int    TOTAL_INITIAL_SHIPS = 5;
+
+    /** The number of ships left on the grid. */
+    private int                 numShips            = TOTAL_INITIAL_SHIPS;
 
     /**
      * gridSpace is a triple array. The first two levels of the array determine
@@ -33,13 +40,12 @@ public final class BattleGridImpl implements BattleGrid {
      * index 1, it tells whether or not a space has been hit, and is therefore
      * visible.
      */
-
     private final GridSpace[][] gridSpaces;
 
     /**
      * isActive returns whether or not a player is active and it's their turn.
      */
-    private boolean             isActive = false;
+    private boolean             isActive            = false;
 
     /**
      * Default constructor, which initializes the size of the grid.
@@ -76,12 +82,16 @@ public final class BattleGridImpl implements BattleGrid {
     }
 
     @Override
-    public Ship.HitStatus shoot(int x, int y) {
-        Ship.HitStatus shotStatus = Ship.HitStatus.MISS;
-        
+    public HitStatus shoot(int x, int y) {
+        HitStatus shotStatus = HitStatus.MISS;
+
         if (gridSpaces[x][y].hasShip() && !gridSpaces[x][y].isVisible()) {
             Ship s = gridSpaces[x][y].getShip();
             shotStatus = s.hit();
+            
+            if (HitStatus.SUNK == shotStatus) {
+                numShips--;
+            }
         }
 
         gridSpaces[x][y].makeVisible();
@@ -99,10 +109,15 @@ public final class BattleGridImpl implements BattleGrid {
     public boolean isShip(int x, int y) {
         return gridSpaces[x][y].hasShip();
     }
-    
+
     @Override
     public ShipType shipTypeAt(int x, int y) {
         return gridSpaces[x][y].getShip().type();
+    }
+    
+    @Override
+    public boolean shipsRemaining() {
+        return numShips > 0;
     }
 
     @Override
@@ -139,7 +154,7 @@ public final class BattleGridImpl implements BattleGrid {
         public boolean isVisible() {
             return this.visible;
         }
-        
+
         public void makeVisible() {
             this.visible = true;
         }

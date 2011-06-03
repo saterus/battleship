@@ -79,6 +79,9 @@ public interface BattleGrid {
 
 	ShipType shipTypeAt(int x, int y);
 	
+	/** Are there unsunk ships remaining on the grid? */
+	boolean shipsRemaining();
+	
 	/**
 	 * Checks to make sure that the specified coordinate is within the bounds of
 	 * the board.
