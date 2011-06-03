@@ -118,7 +118,12 @@ public interface BattleGrid {
 	 * @return the dimension of one side of the grid.
 	 */
 	int gridSize();
-	
+
+	/**
+	 * Retrieves the Player associated with the BattleGrid.
+	 * 
+	 * @return the Player associated with the BattleGrid.
+	 */
 	Player getPlayer();
 
 	/**

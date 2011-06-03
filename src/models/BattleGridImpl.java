@@ -25,8 +25,8 @@ public final class BattleGridImpl implements BattleGrid {
 	 */
 	private static final int BOARD_L = 10;
 
-	/** 
-	 * The number of ships left on the grid. 
+	/**
+	 * The number of ships left on the grid.
 	 * */
 	private int numShips = 0;
 
@@ -46,16 +46,21 @@ public final class BattleGridImpl implements BattleGrid {
 	 */
 	private boolean isActive = false;
 
-    private final Player owningPlayer;
+	/**
+	 * The Player associated with the BattleGridImpl.
+	 */
+	private final Player owningPlayer;
 
 	/**
 	 * Default constructor, which initializes the size of the grid.
+	 * 
+	 * @param owner
+	 *            the Player associated with the BattleGridImpl.
 	 */
-
 	public BattleGridImpl(Player owner) {
 		gridSpaces = new GridSpace[BOARD_L][BOARD_L];
 		this.owningPlayer = owner;
-		
+
 		for (int i = 0; i < BOARD_L; i++) {
 			for (int j = 0; j < BOARD_L; j++) {
 				gridSpaces[i][j] = new GridSpace();
@@ -134,10 +139,10 @@ public final class BattleGridImpl implements BattleGrid {
 	public int gridSize() {
 		return BOARD_L;
 	}
-	
+
 	@Override
 	public Player getPlayer() {
-	    return this.owningPlayer;
+		return this.owningPlayer;
 	}
 
 	@Override
