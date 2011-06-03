@@ -37,7 +37,7 @@ public final class FiringView extends JPanel {
 	 *            the FiringController to handle one player firing at the other.
 	 */
 	public FiringView(WaitingController waiting, FiringController firing) {
-	    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+	    this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         this.add(new BattleGridView(firing));
 	    this.add(new BattleGridView(waiting.getActiveGrid()));
