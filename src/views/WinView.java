@@ -12,46 +12,81 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import models.BattleGrid;
-import models.Player;
 import controllers.WaitingController;
 
-public class WinView extends JPanel {
+/**
+ * Implements a view for use with Battleship that handles the case where a
+ * player wins the game.
+ * 
+ * @author Group c421aa06
+ */
+public final class WinView extends JPanel {
 
-    private final WaitingController controller;
+	/**
+	 * Serial Version ID.
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private final static int        HGAP  = 0;
-    private final static int        VGAP = 10;
+	/**
+	 * The WaitingController which manages the WinView.
+	 */
+	private WaitingController controller;
 
-    public WinView(WaitingController con, String winMessage) {
-        this.controller = con;
+	/**
+	 * The dimension for the rigid area.
+	 */
+	private static final int RIGID_DIM = 20;
 
-        this.setLayout(new BorderLayout(HGAP, VGAP));
+	/**
+	 * The HGAP for the border layout.
+	 */
+	private static final int HGAP = 0;
 
-        JPanel topContainer = new JPanel();
-        topContainer.setLayout(new GridBagLayout());
+	/**
+	 * The VGAP for the border layout.
+	 */
+	private static final int VGAP = 10;
 
-        topContainer.add(Box.createRigidArea(new Dimension(0, 20)));
+	/**
+	 * Constructor which generates the WinView, initialized with the given
+	 * WaitingController and win message.
+	 * 
+	 * @param con
+	 *            the WaitingController used to manage the WinView.
+	 * @param winMessage
+	 *            the win message to be displayed by the WinView.
+	 */
+	public WinView(WaitingController con, String winMessage) {
+		this.controller = con;
 
-        JLabel victoryMessage = new JLabel(winMessage);
-        topContainer.add(victoryMessage, new GridBagConstraints());
+		this.setLayout(new BorderLayout(HGAP, VGAP));
 
-        JPanel bottomContainer = new JPanel();
-        bottomContainer.setLayout(new BoxLayout(bottomContainer, BoxLayout.X_AXIS));
+		JPanel topContainer = new JPanel();
+		topContainer.setLayout(new GridBagLayout());
 
-        bottomContainer.add(new BattleGridView(this.controller.getActiveGrid()));
-        bottomContainer.add(Box.createRigidArea(new Dimension(20, 0)));
-        bottomContainer.add(new BattleGridView(this.controller.getInactiveGrid()));
-        
-        this.add(topContainer, BorderLayout.NORTH);
-        this.add(bottomContainer, BorderLayout.CENTER);
+		topContainer.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
 
-        this.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                System.exit(0);
-            }
-        });
-    }
+		JLabel victoryMessage = new JLabel(winMessage);
+		topContainer.add(victoryMessage, new GridBagConstraints());
 
+		JPanel bottomContainer = new JPanel();
+		bottomContainer.setLayout(new BoxLayout(bottomContainer,
+				BoxLayout.X_AXIS));
+
+		bottomContainer
+				.add(new BattleGridView(this.controller.getActiveGrid()));
+		bottomContainer.add(Box.createRigidArea(new Dimension(RIGID_DIM, 0)));
+		bottomContainer.add(new BattleGridView(this.controller
+				.getInactiveGrid()));
+
+		this.add(topContainer, BorderLayout.NORTH);
+		this.add(bottomContainer, BorderLayout.CENTER);
+
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+	}
 
 }

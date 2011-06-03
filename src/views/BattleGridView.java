@@ -41,6 +41,14 @@ public final class BattleGridView extends JPanel {
     /** Grid gap size in pixels. */
     private static final int    GRID_GAP         = 3;
 
+	/**
+	 * The dimension for the rigid area.
+	 */
+	private static final int RIGID_DIM = 10;
+
+	/**
+	 * JPanel to be used in setting up the layout.
+	 */
     private JPanel              container;
 
     /**
@@ -57,12 +65,13 @@ public final class BattleGridView extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
         this.add(new JLabel(grid.getPlayer().getPlayerName()));
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
 
         container = new JPanel();
-        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP,
+				GRID_GAP));
         this.add(container);
 
         for (int i = 0; i < gridSize; i++) {
@@ -115,12 +124,13 @@ public final class BattleGridView extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
         this.add(new JLabel(targetGrid.getPlayer().getPlayerName()));
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
 
         container = new JPanel();
-        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP,
+				GRID_GAP));
         this.add(container);
 
         for (int i = 0; i < gridSize; i++) {
@@ -172,12 +182,13 @@ public final class BattleGridView extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
         this.add(new JLabel(grid.getPlayer().getPlayerName()));
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
 
         container = new JPanel();
-        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP,
+				GRID_GAP));
         this.add(container);
 
         for (int i = 0; i < gridSize; i++) {
