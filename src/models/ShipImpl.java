@@ -38,8 +38,10 @@ public final class ShipImpl implements Ship {
 	@Override
 	public HitStatus hit() {
 		numHits++;
-		
-		return (type.length() == numHits) ? HitStatus.SUNK : HitStatus.HIT;
+		if (type.length() == numHits) {
+			return HitStatus.SUNK;
+		}
+		return HitStatus.HIT;
 	}
 
 }
