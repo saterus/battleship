@@ -80,6 +80,7 @@ public interface BattleGrid {
 	/**
 	 * Retrieves the ShipType at the location x,y.
 	 * 
+	 * @requires isShip(x, y) is true.
 	 * @param x
 	 *            the x-coordinate of the space to check for the ShipType.
 	 * @param y
@@ -135,5 +136,4 @@ public interface BattleGrid {
 	 * @return isActive {@code true} = Active {@code false} = Inactive
 	 */
 	boolean getPlayerState();
-
 }
