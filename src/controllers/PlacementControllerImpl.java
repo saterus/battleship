@@ -21,7 +21,7 @@ public final class PlacementControllerImpl implements PlacementController {
     /**
      * A logger for use with the PlacementControllerImpl class.
      */
-    private static final Logger LOGGER         = Logger.getLogger(PlacementControllerImpl.class
+    private static final Logger LOGGER = Logger.getLogger(PlacementControllerImpl.class
                                                        .getName());
 
     /**
@@ -75,7 +75,6 @@ public final class PlacementControllerImpl implements PlacementController {
         shipTypesLeft.add(ShipType.DESTROYER);
         shipTypesLeft.add(ShipType.SUBMARINE);
         shipTypesLeft.add(ShipType.PATROL_BOAT);
-        
 
         this.currentShipType = shipTypesLeft.get(0);
     }
@@ -124,7 +123,9 @@ public final class PlacementControllerImpl implements PlacementController {
     public void setSelectedShipType(ShipType type) {
         LOGGER.finest("Set ShipType: " + type + ".");
         this.currentShipType = type;
-        this.selector.setActiveButton(this.currentShipType);
+        if (null != this.selector) {
+            this.selector.setActiveButton(this.currentShipType);
+        }
     }
 
     @Override
@@ -132,7 +133,9 @@ public final class PlacementControllerImpl implements PlacementController {
         LOGGER.fine("Disabling " + this.currentShipType.toString() + ".");
 
         this.shipTypesLeft.remove(this.currentShipType);
-        this.selector.disableShipButton(this.currentShipType);
+        if (null != this.selector) {
+            this.selector.disableShipButton(this.currentShipType);
+        }
         this.currentShipType = null;
 
         if (0 == this.shipTypesLeft.size()) {
@@ -140,7 +143,9 @@ public final class PlacementControllerImpl implements PlacementController {
             this.waiting.nextScreen(null);
         } else {
             this.currentShipType = this.shipTypesLeft.get(0);
-            this.selector.setActiveButton(this.currentShipType);
+            if (null != this.selector) {
+                this.selector.setActiveButton(this.currentShipType);
+            }
         }
     }
 
