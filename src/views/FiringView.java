@@ -1,5 +1,8 @@
 package views;
 
+import java.util.logging.Logger;
+
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import controllers.FiringController;
@@ -12,6 +15,11 @@ import controllers.WaitingController;
  * @author Group c421aa06
  */
 public final class FiringView extends JPanel {
+    
+    /**
+     * A LOGGER for use with the FiringView class.
+     */
+    private static final Logger LOGGER = Logger.getLogger(FiringView.class.getName());
 
 	/**
 	 * Serial Version ID.
@@ -29,6 +37,11 @@ public final class FiringView extends JPanel {
 	 *            the FiringController to handle one player firing at the other.
 	 */
 	public FiringView(WaitingController waiting, FiringController firing) {
+	    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        this.add(new BattleGridView(firing));
+	    this.add(new BattleGridView(waiting.getActiveGrid()));
+	    
+	    LOGGER.finer("Created Firing View.");
 	}
 }

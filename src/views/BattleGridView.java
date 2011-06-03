@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 import models.BattleGrid;
+import controllers.FiringController;
 import controllers.PlacementController;
 
 /**
@@ -45,7 +46,9 @@ public final class BattleGridView extends JPanel {
 	 */
 	public BattleGridView(PlacementController con, BattleGrid grid) {
 		this.gridSize = grid.gridSize();
+		
 		this.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+		
 		for (int i = 0; i < gridSize; i++) {
 			for (int j = 0; j < gridSize; j++) {
 				BattleGridSquare square = new BattleGridSquare(i, j);
@@ -54,11 +57,46 @@ public final class BattleGridView extends JPanel {
 				square.setSquareBackground(grid);
 			}
 		}
-		LOGGER.finer("Created BattleGridView");
+		
+		LOGGER.finer("Created BattleGridView for Placement");
 	}
+	
+	public BattleGridView(FiringController con) {
+        BattleGrid targetGrid = con.getTarget();
+	    this.gridSize = targetGrid.gridSize();
+	    
+	    this.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+	    
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                BattleGridSquare square = new BattleGridSquare(i, j);
+                square.addFiringClickListener(this, con, targetGrid);
+                this.add(square);
+                square.setSquareBackground(targetGrid);
+            }
+        }
+        
+        LOGGER.finer("Created BattleGridView for Firing");
+	}
+	
+	public BattleGridView(BattleGrid grid) {
+        this.gridSize = grid.gridSize();
+        
+        this.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+        
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                BattleGridSquare square = new BattleGridSquare(i, j);
+                this.add(square);
+                square.setSquareBackground(grid);
+            }
+        }
+        
+        LOGGER.finer("Created BattleGridView for Viewing");
+    }
 
 	/**
-	 * Updates the background colors for each aquare in the grid.
+	 * Updates the background colors for each square in the grid.
 	 * 
 	 * @param grid
 	 *            the grid to be updated.
