@@ -160,7 +160,7 @@ public final class BattleGridImpl implements BattleGrid {
 	 * 
 	 * @author Group c421aa06
 	 */
-	private class GridSpace {
+	private static class GridSpace {
 
 		/**
 		 * The Ship, if any, residing at this grid space.
