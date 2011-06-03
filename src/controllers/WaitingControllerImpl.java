@@ -99,7 +99,7 @@ public final class WaitingControllerImpl implements WaitingController {
 	public FiringController switchFiringPlayer() {
 		swapPlayersAndGrids();
 
-		return new FiringControllerImpl(this, this.currentGrid);
+		return new FiringControllerImpl(this, this.inactiveGrid);
 	}
 
 	@Override
