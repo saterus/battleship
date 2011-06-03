@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import models.BattleGrid;
 import models.Ship;
-import models.Ship.HitStatus;
 import controllers.FiringController;
 import controllers.PlacementController;
 
