@@ -1,1 +1,34 @@
 421 Final Project
+
+
+Game-play Instructions:
+I.	Ship Placement
+	a.	Each player has 5 ships to place with the following lengths:
+			Aircraft Carrier	5
+			Battleship 			4
+			Destroyer			3
+			Submarine			3
+			Patrol Boat			2
+	b.	To place a ship, click the button for the ship you want to place, and 
+		click on a square on the grid to place the ship.
+	c.	The mouse pointer corresponds to the end of the ship, and the ship
+		extends either to the right or down depending on the orientation.
+	d.	To change the orientation of the ship being placed, click the button
+		labeled "Change to..." A North/South orientation means the ship extends
+		down from the pointer, while an East/West orientation means the ship
+		extends to the right from the pointer.
+II.	Firing
+	a.	During each turn, each player has the opportunity to select one space
+		of the grid to fire upon. Select a space by clicking on it.
+	b.	If a player hits an opponent's ship, a message is displayed alerting
+		them to the fact on an intermediate screen.
+	c.	To advance to the next player's turn, click on the screen and continue 
+		from step a.
+III.Winning
+	a.	The first player to sink all of their opponent's ships is the winner.
+	b.	As soon as the last of a player's ships is sunk, a summary screen will
+		appear showing the locations of each players' ships, where each ship
+		was hit, and where in the water was shot.
+	c.	To close the game, simply click on the screen again, or click the 'x'
+		in the top right corner of the screen.
+	    
