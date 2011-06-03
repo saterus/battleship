@@ -1,8 +1,6 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import models.Player;
-import models.PlayerImpl;
 import models.Ship;
 import models.Ship.HitStatus;
 import models.ShipImpl;
