@@ -77,6 +77,8 @@ public interface BattleGrid {
 	 */
 	boolean isShip(int x, int y);
 
+	ShipType shipTypeAt(int x, int y);
+	
 	/**
 	 * Checks to make sure that the specified coordinate is within the bounds of
 	 * the board.
