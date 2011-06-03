@@ -63,7 +63,8 @@ public final class BattleshipFrame extends JFrame {
         BattleGrid gridA = new BattleGridImpl(playerA);
         BattleGrid gridB = new BattleGridImpl(playerB);
 
-        waiting = new WaitingControllerImpl(this, playerB, gridB, playerA, gridA);
+		waiting = new WaitingControllerImpl(this, playerB, gridB, playerA,
+				gridA);
 
         this.setTitle("Battleship!");
         this.setSize(WIDTH, HEIGHT);
@@ -89,6 +90,9 @@ public final class BattleshipFrame extends JFrame {
 
     /**
      * Creates a view for transitioning between Players.
+	 * 
+	 * @param msg
+	 *            the message to be displayed to the players.
      */
     private void createWaitingView(String msg) {
         WaitingView view = new WaitingView(waiting, msg);
@@ -101,6 +105,9 @@ public final class BattleshipFrame extends JFrame {
     
     /**
      * Creates a view for transitioning between Players.
+	 * 
+	 * @param msg
+	 *            the message to be displayed to the players.
      */
     private void createWinView(String msg) {
         WinView view = new WinView(waiting, msg);
@@ -137,6 +144,8 @@ public final class BattleshipFrame extends JFrame {
      * 
      * @param nextView
      *            the view to be switched to.
+	 * @param message
+	 *            the message to be displayed to the players.
      */
     @SuppressWarnings("rawtypes")
     public void switchView(Class nextView, String message) {
