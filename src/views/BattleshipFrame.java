@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Dimension;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -67,7 +68,8 @@ public final class BattleshipFrame extends JFrame {
 				gridA);
 
 		this.setTitle("Battleship!");
-		this.setSize(WIDTH, HEIGHT);
+		Dimension dim = new Dimension(WIDTH, HEIGHT);
+		this.setPreferredSize(dim);
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
