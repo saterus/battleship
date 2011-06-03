@@ -32,6 +32,7 @@ public interface FiringController {
 	 * Determines whether a spot on the grid is able to be shot. A space can be
 	 * shot if it has never before been shot.
 	 * 
+	 * @requires {@code 0 <= x <= 9 and 0 <= y <= 9}.
 	 * @param x
 	 *            the x-coordinate of the position to check.
 	 * @param y

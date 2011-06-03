@@ -34,37 +34,47 @@ public interface WaitingController {
 
 	/**
 	 * Switches the game view to the next sequential screen display.
+	 * 
+	 * @param message
+	 *            the message to be displayed to the player.
 	 */
 	void nextScreen(String message);
 
 	/**
-     * Retrieves the active BattleGrid.
-     * 
-     * @return the BattleGrid that is currently active.
-     */
-    BattleGrid getActiveGrid();
+	 * Retrieves the active BattleGrid.
+	 * 
+	 * @return the BattleGrid that is currently active.
+	 */
+	BattleGrid getActiveGrid();
 
-    /**
-     * Retrieves the active Player.
-     * 
-     * @return the Player that is currently active.
-     */
-    Player getActivePlayer();
-    
-    /**
-     * Retrieves the inactive BattleGrid.
-     * 
-     * @return the BattleGrid that is currently inactive.
-     */
-    BattleGrid getInactiveGrid();
+	/**
+	 * Retrieves the active Player.
+	 * 
+	 * @return the Player that is currently active.
+	 */
+	Player getActivePlayer();
 
-    /**
-     * Retrieves the inactive Player.
-     * 
-     * @return the Player that is currently inactive.
-     */
-    Player getInactivePlayer();
-    
-    void setHasWon(boolean b);
+	/**
+	 * Retrieves the inactive BattleGrid.
+	 * 
+	 * @return the BattleGrid that is currently inactive.
+	 */
+	BattleGrid getInactiveGrid();
+
+	/**
+	 * Retrieves the inactive Player.
+	 * 
+	 * @return the Player that is currently inactive.
+	 */
+	Player getInactivePlayer();
+
+	/**
+	 * Notify the game that it is over and the current active player has won.
+	 * 
+	 * @param b
+	 *            a boolean denoting whether or not the game has been won. True
+	 *            signifies that the game has been won.
+	 */
+	void setHasWon(boolean b);
 
 }
