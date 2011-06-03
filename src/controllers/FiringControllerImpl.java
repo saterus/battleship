@@ -63,7 +63,7 @@ public final class FiringControllerImpl implements FiringController {
 		if (HitStatus.SUNK == outcome) {
 			ShipType t = this.target.shipTypeAt(x, y);
 			this.sunkMessage = waiting.getActivePlayer().getPlayerName()
-					+ this.sunkMessageTemplate + t.toString();
+					+ this.sunkMessageTemplate + t.toString() + "! ";
 
 			LOGGER.info(t.toString() + " has been sunk!");
 		}
