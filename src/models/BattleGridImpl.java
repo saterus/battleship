@@ -12,142 +12,139 @@ import java.util.logging.Logger;
  */
 public final class BattleGridImpl implements BattleGrid {
 
-    /**
-     * A LOGGER to be used with the BattleGridImpl class.
-     */
-    private static final Logger LOGGER   = Logger.getLogger(BattleGridImpl.class
-                                                 .getName());
+	/**
+	 * A LOGGER to be used with the BattleGridImpl class.
+	 */
+	private static final Logger LOGGER = Logger.getLogger(BattleGridImpl.class
+			.getName());
 
-    /**
-     * BOARD_L is the length of the grid.
-     */
+	/**
+	 * BOARD_L is the length of the grid.
+	 */
+	private static final int BOARD_L = 10;
 
-    private static final int    BOARD_L  = 10;
+	/**
+	 * gridSpace is a triple array. The first two levels of the array determine
+	 * the x-position and y-position within the grid. The last level of the
+	 * array contains two boolean values which determine two things:
+	 * 
+	 * At index 0, it tells whether or not a ship is occupying said space. At
+	 * index 1, it tells whether or not a space has been hit, and is therefore
+	 * visible.
+	 */
+	private final GridSpace[][] gridSpaces;
 
-    /**
-     * gridSpace is a triple array. The first two levels of the array determine
-     * the x-position and y-position within the grid. The last level of the
-     * array contains two boolean values which determine two things:
-     * 
-     * At index 0, it tells whether or not a ship is occupying said space. At
-     * index 1, it tells whether or not a space has been hit, and is therefore
-     * visible.
-     */
+	/**
+	 * isActive returns whether or not a player is active and it's their turn.
+	 */
+	private boolean isActive = false;
 
-    private final GridSpace[][] gridSpaces;
+	/**
+	 * Default constructor, which initializes the size of the grid.
+	 */
+	public BattleGridImpl() {
+		gridSpaces = new GridSpace[BOARD_L][BOARD_L];
+		for (int i = 0; i < BOARD_L; i++) {
+			for (int j = 0; j < BOARD_L; j++) {
+				gridSpaces[i][j] = new GridSpace();
+			}
+		}
+		LOGGER.finest("Created BattleGrid.");
+	}
 
-    /**
-     * isActive returns whether or not a player is active and it's their turn.
-     */
-    private boolean             isActive = false;
+	@Override
+	public void setShipPos(Ship ship, int x, int y, boolean orient) {
 
-    /**
-     * Default constructor, which initializes the size of the grid.
-     */
+		int lengthOfShip = ship.type().length();
 
-    public BattleGridImpl() {
-        gridSpaces = new GridSpace[BOARD_L][BOARD_L];
-        for (int i = 0; i < BOARD_L; i++) {
-            for (int j = 0; j < BOARD_L; j++) {
-                gridSpaces[i][j] = new GridSpace();
-            }
-        }
-        LOGGER.finest("Created BattleGrid.");
-    }
+		// Updates each space of the board, and tells it that a ship now
+		// occupies it.
+		if (orient) {
+			for (int i = 0; i < lengthOfShip; i++) {
+				gridSpaces[x + i][y].setShip(ship);
+			}
+		} else {
+			for (int i = 0; i < lengthOfShip; i++) {
+				gridSpaces[x][y + i].setShip(ship);
+			}
+		}
 
-    @Override
-    public void setShipPos(Ship ship, int x, int y, boolean orient) {
+		LOGGER.fine("Set ship at (" + x + "," + y + ")");
+	}
 
-        int lengthOfShip = ship.type().length();
+	@Override
+	public boolean shoot(int x, int y) {
+		boolean didHit = false;
+		if (gridSpaces[x][y].hasShip() && !gridSpaces[x][y].isVisible()) {
+			didHit = true;
+		}
 
-        // Updates each space of the board, and tells it that a ship now
-        // occupies it.
-        if (orient) {
-            for (int i = 0; i < lengthOfShip; i++) {
-                gridSpaces[x + i][y].setShip(ship);
-            }
-        } else {
-            for (int i = 0; i < lengthOfShip; i++) {
-                gridSpaces[x][y + i].setShip(ship);
-            }
-        }
+		gridSpaces[x][y].makeVisible();
 
-        LOGGER.fine("Set ship at (" + x + "," + y + ")");
-    }
+		LOGGER.fine("Shot at (" + x + "," + y + "). Hit? " + didHit);
+		return didHit;
+	}
 
-    @Override
-    public boolean shoot(int x, int y) {
-        boolean didHit = false;
-        if (gridSpaces[x][y].hasShip() && !gridSpaces[x][y].isVisible()) {
-            didHit = true;
-        }
+	@Override
+	public boolean isViewable(int x, int y) {
+		return gridSpaces[x][y].isVisible();
+	}
 
-        gridSpaces[x][y].makeVisible();
+	@Override
+	public boolean isShip(int x, int y) {
+		return gridSpaces[x][y].hasShip();
+	}
 
-        LOGGER.fine("Shot at (" + x + "," + y + "). Hit? " + didHit);
-        return didHit;
-    }
+	@Override
+	public boolean boundsCheck(int x, int y) {
+		return x < BOARD_L && y < BOARD_L && x >= 0 && y >= 0;
+	}
 
-    @Override
-    public boolean isViewable(int x, int y) {
-        return gridSpaces[x][y].isVisible();
-    }
+	@Override
+	public int gridSize() {
+		return BOARD_L;
+	}
 
-    @Override
-    public boolean isShip(int x, int y) {
-        return gridSpaces[x][y].hasShip();
-    }
+	@Override
+	public void setPlayerState(boolean state) {
+		isActive = state;
+	}
 
-    @Override
-    public boolean boundsCheck(int x, int y) {
-        return x < BOARD_L && y < BOARD_L && x >= 0 && y >= 0;
-    }
+	@Override
+	public boolean getPlayerState() {
+		return isActive;
+	}
 
-    @Override
-    public int gridSize() {
-        return BOARD_L;
-    }
+	private class GridSpace {
 
-    @Override
-    public void setPlayerState(boolean state) {
-        isActive = state;
-    }
+		private Ship ship;
 
-    @Override
-    public boolean getPlayerState() {
-        return isActive;
-    }
+		private boolean visible;
 
-    private class GridSpace {
+		public GridSpace() {
+			this.ship = null;
+			this.visible = false;
+		}
 
-        private Ship    ship;
+		public boolean isVisible() {
+			return this.visible;
+		}
 
-        private boolean visible;
+		public void makeVisible() {
+			this.visible = true;
+		}
 
-        public GridSpace() {
-            this.ship = null;
-            this.visible = false;
-        }
+		public boolean hasShip() {
+			return null != this.ship;
+		}
 
-        public boolean isVisible() {
-            return this.visible;
-        }
-        
-        public void makeVisible() {
-            this.visible = true;
-        }
+		public Ship getShip() {
+			return this.ship;
+		}
 
-        public boolean hasShip() {
-            return null != this.ship;
-        }
-
-        public Ship getShip() {
-            return this.ship;
-        }
-
-        public void setShip(Ship s) {
-            this.ship = s;
-        }
-    }
+		public void setShip(Ship s) {
+			this.ship = s;
+		}
+	}
 
 }
