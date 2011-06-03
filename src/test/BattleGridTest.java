@@ -19,7 +19,7 @@ public class BattleGridTest {
 
 	@Before
 	public void setUp() {
-	    player = new PlayerImpl("Test Player");
+		player = new PlayerImpl("Test Player");
 	}
 
 	// Default constructor
@@ -69,7 +69,7 @@ public class BattleGridTest {
 		assertEquals("Check 2 - bat", ShipType.BATTLESHIP,
 				grid.shipTypeAt(4, 6));
 	}
-	
+
 	// Find ships remaining
 	@Test
 	public void shipsRemaining() {
@@ -83,7 +83,7 @@ public class BattleGridTest {
 		grid.shoot(7, 5);
 		assertTrue("No ships after sunk", !grid.shipsRemaining());
 	}
-	
+
 	// Check bounds
 	@Test
 	public void checkBounds() {
@@ -94,21 +94,21 @@ public class BattleGridTest {
 		assertTrue("Bounds check outside below", !grid.boundsCheck(0, -1));
 		assertTrue("Bounds check outside above", !grid.boundsCheck(0, 11));
 	}
-	
+
 	// Check grid size
 	@Test
 	public void checkGridSize() {
 		grid = new BattleGridImpl(player);
 		assertEquals("Check grid size", 10, grid.gridSize());
 	}
-	
-	   // Check player
-    @Test
-    public void checkPlayer() {
-        grid = new BattleGridImpl(player);
-        assertEquals("Check player", player, grid.getPlayer());
-    }
-	
+
+	// Check player
+	@Test
+	public void checkPlayer() {
+		grid = new BattleGridImpl(player);
+		assertEquals("Check player", player, grid.getPlayer());
+	}
+
 	// Player status
 	@Test
 	public void checkPlayerStatus() {
