@@ -31,17 +31,17 @@ public class WinView extends JPanel {
         JPanel topContainer = new JPanel();
         topContainer.setLayout(new GridBagLayout());
 
+        topContainer.add(Box.createRigidArea(new Dimension(0, 20)));
+
         JLabel victoryMessage = new JLabel(winMessage);
         topContainer.add(victoryMessage, new GridBagConstraints());
 
         JPanel bottomContainer = new JPanel();
         bottomContainer.setLayout(new BoxLayout(bottomContainer, BoxLayout.X_AXIS));
 
-        bottomContainer.add(gridWithLabel(this.controller.getActivePlayer(),
-                this.controller.getActiveGrid()));
+        bottomContainer.add(new BattleGridView(this.controller.getActiveGrid()));
         bottomContainer.add(Box.createRigidArea(new Dimension(20, 0)));
-        bottomContainer.add(gridWithLabel(this.controller.getInactivePlayer(),
-                this.controller.getInactiveGrid()));
+        bottomContainer.add(new BattleGridView(this.controller.getInactiveGrid()));
         
         this.add(topContainer, BorderLayout.NORTH);
         this.add(bottomContainer, BorderLayout.CENTER);
@@ -53,13 +53,5 @@ public class WinView extends JPanel {
         });
     }
 
-    private JPanel gridWithLabel(Player p, BattleGrid g) {
-        JPanel container = new JPanel();
-        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
-        container.add(new JLabel(p.getPlayerName()));
-        container.add(new BattleGridView(g));
-        
-        return container;
-    }
 }

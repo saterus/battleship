@@ -1,12 +1,17 @@
 package views;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.logging.Logger;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import models.BattleGrid;
+import models.Player;
 import controllers.FiringController;
 import controllers.PlacementController;
 
@@ -34,6 +39,8 @@ public final class BattleGridView extends JPanel {
 
 	/** Grid gap size in pixels. */
 	private static final int GRID_GAP = 3;
+	
+	private JPanel container;
 
 	/**
 	 * Constructor that initializes the BattleGridView with the given
@@ -45,15 +52,23 @@ public final class BattleGridView extends JPanel {
 	 *            the BattleGrid to be used by the BattleGridView.
 	 */
 	public BattleGridView(PlacementController con, BattleGrid grid) {
-		this.gridSize = grid.gridSize();
+        this.gridSize = grid.gridSize();
+        
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		this.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        this.add(new JLabel(grid.getPlayer().getPlayerName()));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
 
+        container = new JPanel();
+        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+        this.add(container);
+        
 		for (int i = 0; i < gridSize; i++) {
 			for (int j = 0; j < gridSize; j++) {
 				BattleGridSquare square = new BattleGridSquare(i, j);
 				square.addPlacementClickListener(this, con, grid);
-				this.add(square);
+				container.add(square);
 				square.setSquareBackground(grid);
 			}
 		}
@@ -71,14 +86,22 @@ public final class BattleGridView extends JPanel {
 	public BattleGridView(FiringController con) {
 		BattleGrid targetGrid = con.getTarget();
 		this.gridSize = targetGrid.gridSize();
+  
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        this.add(new JLabel(targetGrid.getPlayer().getPlayerName()));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		this.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+        container = new JPanel();
+        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+        this.add(container);
 
 		for (int i = 0; i < gridSize; i++) {
 			for (int j = 0; j < gridSize; j++) {
 				BattleGridSquare square = new BattleGridSquare(i, j);
 				square.addFiringClickListener(this, con, targetGrid);
-				this.add(square);
+				container.add(square);
 				square.setSquareBackground(targetGrid);
 			}
 		}
@@ -95,19 +118,32 @@ public final class BattleGridView extends JPanel {
 	 */
 	public BattleGridView(BattleGrid grid) {
 		this.gridSize = grid.gridSize();
+		
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		this.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        this.add(new JLabel(grid.getPlayer().getPlayerName()));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        container = new JPanel();
+		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+		this.add(container);
 
 		for (int i = 0; i < gridSize; i++) {
 			for (int j = 0; j < gridSize; j++) {
 				BattleGridSquare square = new BattleGridSquare(i, j);
-				this.add(square);
+				container.add(square);
 				square.setSquareBackground(grid);
 			}
 		}
 
 		LOGGER.finer("Created BattleGridView for Viewing");
 	}
+	
+    
+        
+        
+
 
 	/**
 	 * Updates the background colors for each square in the grid.
@@ -116,10 +152,12 @@ public final class BattleGridView extends JPanel {
 	 *            the grid to be updated.
 	 */
 	public void redrawSquareBackgrounds(BattleGrid grid) {
-		for (Component square : this.getComponents()) {
+		for (Component square : this.container.getComponents()) {
 			BattleGridSquare sq = (BattleGridSquare) square;
 			sq.setSquareBackground(grid);
 		}
 		LOGGER.finest("Redrawing Square Backgrounds.");
 	}
+	
+	
 }
