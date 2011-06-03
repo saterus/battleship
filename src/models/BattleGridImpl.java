@@ -74,9 +74,10 @@ public final class BattleGridImpl implements BattleGrid {
 	public boolean shoot(int x, int y) {
 		boolean didHit = false;
 		if (gridSpace[x][y][0] && !gridSpace[x][y][1]) {
-			gridSpace[x][y][1] = true;
 			didHit = true;
 		}
+		
+		gridSpace[x][y][1] = true; // shot makes everything visible
 
 		LOGGER.fine("Shot at (" + x + "," + y + "). Hit? " + didHit);
 		return didHit;
