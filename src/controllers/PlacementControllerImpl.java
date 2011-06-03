@@ -73,8 +73,9 @@ public final class PlacementControllerImpl implements PlacementController {
         shipTypesLeft.add(ShipType.AIRCRAFT_CARRIER);
         shipTypesLeft.add(ShipType.BATTLESHIP);
         shipTypesLeft.add(ShipType.DESTROYER);
-        shipTypesLeft.add(ShipType.PATROL_BOAT);
         shipTypesLeft.add(ShipType.SUBMARINE);
+        shipTypesLeft.add(ShipType.PATROL_BOAT);
+        
 
         this.currentShipType = shipTypesLeft.get(0);
     }
