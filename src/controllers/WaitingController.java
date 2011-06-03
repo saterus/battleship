@@ -64,5 +64,7 @@ public interface WaitingController {
      * @return the Player that is currently inactive.
      */
     Player getInactivePlayer();
+    
+    void setHasWon(boolean b);
 
 }

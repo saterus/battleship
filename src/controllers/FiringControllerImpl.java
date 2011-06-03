@@ -32,8 +32,6 @@ public final class FiringControllerImpl implements FiringController {
 
     private String                  sunkMessage;
 
-    private boolean                 hasWon;
-
     /**
      * Sets up the controller with the grid to fire upon.
      * 
@@ -46,7 +44,6 @@ public final class FiringControllerImpl implements FiringController {
         this.waiting = waiting;
         this.target = target;
         this.sunkMessage = null;
-        this.hasWon = false;
     }
 
     @Override
@@ -63,7 +60,7 @@ public final class FiringControllerImpl implements FiringController {
         }
 
         if (!this.target.shipsRemaining()) {
-            this.hasWon = true;
+            this.waiting.setHasWon(true);
             this.sunkMessage += waiting.getActivePlayer().getPlayerName()
                     + " has sunk all your ships and won the game!";
 
