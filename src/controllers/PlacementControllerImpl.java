@@ -67,9 +67,9 @@ public final class PlacementControllerImpl implements PlacementController {
         this.grid = grid;
         this.waiting = waiting;
         // Initialize set of ShipTypes to place
-        shipTypesLeft.add(ShipType.AIRCRAFT_CARRIER);
+//        shipTypesLeft.add(ShipType.AIRCRAFT_CARRIER);
 //        shipTypesLeft.add(ShipType.BATTLESHIP); // TODO: Uncomment after finished testing.
-//        shipTypesLeft.add(ShipType.DESTROYER);
+        shipTypesLeft.add(ShipType.DESTROYER);
 //        shipTypesLeft.add(ShipType.PATROL_BOAT);
 //        shipTypesLeft.add(ShipType.SUBMARINE);
     }
@@ -130,7 +130,7 @@ public final class PlacementControllerImpl implements PlacementController {
         
         if(0 == this.shipTypesLeft.size()) {
             LOGGER.fine("Switching players.");
-            this.waiting.nextScreen();
+            this.waiting.nextScreen(null);
         }
     }
 

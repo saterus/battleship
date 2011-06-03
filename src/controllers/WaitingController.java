@@ -35,7 +35,7 @@ public interface WaitingController {
 	/**
 	 * Switches the game view to the next sequential screen display.
 	 */
-	void nextScreen();
+	void nextScreen(String message);
 
 	/**
      * Retrieves the active BattleGrid.

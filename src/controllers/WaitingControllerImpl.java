@@ -103,14 +103,14 @@ public final class WaitingControllerImpl implements WaitingController {
 	}
 
 	@Override
-	public void nextScreen() {
+	public void nextScreen(String message) {
 		if (sequenceCounter == viewSequence.indexOf(FiringView.class)) {
 			sequenceCounter--;
 		} else {
 			sequenceCounter++;
 		}
 
-		this.battleship.switchView(viewSequence.get(sequenceCounter));
+		this.battleship.switchView(viewSequence.get(sequenceCounter), message);
 	}
 
 	@Override

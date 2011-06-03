@@ -14,9 +14,9 @@ import models.ShipType;
  * 
  */
 public final class FiringControllerImpl implements FiringController {
-    
-    private static final Logger LOGGER = Logger.getLogger(FiringControllerImpl.class
-            .getName());
+
+    private static final Logger     LOGGER              = Logger.getLogger(FiringControllerImpl.class
+                                                                .getName());
 
     /**
      * The grid being shot at.
@@ -58,7 +58,7 @@ public final class FiringControllerImpl implements FiringController {
             ShipType t = this.target.shipTypeAt(x, y);
             this.sunkMessage = waiting.getActivePlayer().getPlayerName()
                     + this.sunkMessageTemplate + t.toString();
-            
+
             LOGGER.info(t.toString() + " has been sunk!");
         }
 
@@ -66,7 +66,7 @@ public final class FiringControllerImpl implements FiringController {
             this.hasWon = true;
             this.sunkMessage += waiting.getActivePlayer().getPlayerName()
                     + " has sunk all your ships and won the game!";
-            
+
             LOGGER.info(waiting.getActivePlayer().getPlayerName() + " has won!");
         }
 
@@ -85,16 +85,10 @@ public final class FiringControllerImpl implements FiringController {
 
     @Override
     public void endTurn() {
-        // TODO: More thinking about the repercussions of how to display a
-        // message on the WaitingView.
+        String tempMsg = this.sunkMessage;
+        this.sunkMessage = null;
         
-        // if (null == sunkMessage) {
-        this.waiting.nextScreen();
-        // } else {
-        // String tempMsg = this.sunkMessage;
-        // this.sunkMessage = null;
-        // this.waiting.nextScreen(tempMsg);
-        // }
+        this.waiting.nextScreen(tempMsg);
     }
 
 }
