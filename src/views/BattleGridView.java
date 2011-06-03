@@ -51,7 +51,7 @@ public final class BattleGridView extends JPanel {
 
 		for (int i = 0; i < gridSize; i++) {
 			for (int j = 0; j < gridSize; j++) {
-				BattleGridSquare square = new BattleGridSquare(i, j);
+				BattleGridSquare square = new BattleGridSquare(j, i);
 				square.addPlacementClickListener(this, con, grid);
 				this.add(square);
 				square.setSquareBackground(grid);
@@ -76,7 +76,7 @@ public final class BattleGridView extends JPanel {
 
 		for (int i = 0; i < gridSize; i++) {
 			for (int j = 0; j < gridSize; j++) {
-				BattleGridSquare square = new BattleGridSquare(i, j);
+				BattleGridSquare square = new BattleGridSquare(j, i);
 				square.addFiringClickListener(this, con, targetGrid);
 				this.add(square);
 				square.setSquareBackground(targetGrid);
