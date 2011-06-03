@@ -29,12 +29,12 @@ public final class BattleshipFrame extends JFrame {
 	/**
 	 * The height of the BattleShipFrame.
 	 */
-	private static final int HEIGHT = 800;
+	private static final int HEIGHT = 600;
 
 	/**
 	 * THe width of the BattleShipFrame.
 	 */
-	private static final int WIDTH = 600;
+	private static final int WIDTH = 800;
 
 	/**
 	 * A LOGGER for use with the BattleshipFrame class.
