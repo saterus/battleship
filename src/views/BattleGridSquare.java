@@ -44,29 +44,29 @@ public final class BattleGridSquare extends JPanel {
     /**
      * Color of grid squares that have not been shot on the opponent's grid.
      */
-    private static final Color  FOG              = Color.LIGHT_GRAY;
+    private static final Color  FOG              = new Color(171, 185, 192);
 
     /**
      * Color of grid squares that hold a Ship and have been shot.
      */
-    private static final Color  HIT              = Color.RED;
+    private static final Color  HIT              = new Color(248, 105, 35);
 
     /**
      * Color of grid squares that have been shot and hold no Ship.
      */
-    private static final Color  WATER            = Color.BLUE;
+    private static final Color  WATER            = new Color(78, 170, 215);
 
     /**
      * Color of grid squares that hold a Ship that have not been shot on the
      * player's own grid.
      */
-    private static final Color  SHIP             = Color.DARK_GRAY;
+    private static final Color  SHIP             = new Color(97, 108, 118);
 
     /**
      * Color of the active player's grid squares that have been shot and hold no
      * Ship.
      */
-    private static final Color  MISS             = Color.YELLOW;
+    private static final Color  MISS             = new Color(164, 207, 228);
 
     /**
      * Color of the grid labels. (1-10, A-whatever).
