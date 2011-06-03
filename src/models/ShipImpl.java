@@ -36,13 +36,10 @@ public final class ShipImpl implements Ship {
 	}
 
 	@Override
-	public boolean isSunk() {
-		return (type.length() == numHits);
-	}
-
-	@Override
-	public void hit() {
+	public HitStatus hit() {
 		numHits++;
+		
+		return (type.length() == numHits) ? HitStatus.SUNK : HitStatus.HIT;
 	}
 
 }

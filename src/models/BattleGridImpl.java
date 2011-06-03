@@ -99,6 +99,11 @@ public final class BattleGridImpl implements BattleGrid {
     public boolean isShip(int x, int y) {
         return gridSpaces[x][y].hasShip();
     }
+    
+    @Override
+    public ShipType shipTypeAt(int x, int y) {
+        return gridSpaces[x][y].getShip().type();
+    }
 
     @Override
     public boolean boundsCheck(int x, int y) {
