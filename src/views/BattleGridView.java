@@ -41,14 +41,14 @@ public final class BattleGridView extends JPanel {
     /** Grid gap size in pixels. */
     private static final int    GRID_GAP         = 3;
 
-	/**
-	 * The dimension for the rigid area.
-	 */
-	private static final int RIGID_DIM = 10;
+    /**
+     * The dimension for the rigid area.
+     */
+    private static final int    RIGID_DIM        = 10;
 
-	/**
-	 * JPanel to be used in setting up the layout.
-	 */
+    /**
+     * JPanel to be used in setting up the layout.
+     */
     private JPanel              container;
 
     /**
@@ -65,13 +65,12 @@ public final class BattleGridView extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
+        this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
         this.add(new JLabel(grid.getPlayer().getPlayerName()));
-		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
+        this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
 
         container = new JPanel();
-		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP,
-				GRID_GAP));
+        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
         this.add(container);
 
         for (int i = 0; i < gridSize; i++) {
@@ -93,7 +92,8 @@ public final class BattleGridView extends JPanel {
                     blank.setLayout(new GridBagLayout());
                     blank.setBackground(BattleGridSquare.LABEL_COLOR);
 
-                    blank.add(new JLabel(String.valueOf(i)), new GridBagConstraints());
+                    blank.add(new JLabel(String.valueOf((char) (((int) 'A') + i - 1))),
+                            new GridBagConstraints());
 
                     container.add(blank);
                 } else { // column numbers
@@ -124,13 +124,12 @@ public final class BattleGridView extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
+        this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
         this.add(new JLabel(targetGrid.getPlayer().getPlayerName()));
-		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
+        this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
 
         container = new JPanel();
-		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP,
-				GRID_GAP));
+        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
         this.add(container);
 
         for (int i = 0; i < gridSize; i++) {
@@ -152,7 +151,8 @@ public final class BattleGridView extends JPanel {
                     blank.setLayout(new GridBagLayout());
                     blank.setBackground(BattleGridSquare.LABEL_COLOR);
 
-                    blank.add(new JLabel(String.valueOf(i)), new GridBagConstraints());
+                    blank.add(new JLabel(String.valueOf((char) (((int) 'A') + i - 1))),
+                            new GridBagConstraints());
 
                     container.add(blank);
                 } else { // column numbers
@@ -182,13 +182,12 @@ public final class BattleGridView extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
+        this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
         this.add(new JLabel(grid.getPlayer().getPlayerName()));
-		this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
+        this.add(Box.createRigidArea(new Dimension(0, RIGID_DIM)));
 
         container = new JPanel();
-		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP,
-				GRID_GAP));
+        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
         this.add(container);
 
         for (int i = 0; i < gridSize; i++) {
@@ -209,7 +208,8 @@ public final class BattleGridView extends JPanel {
                     blank.setLayout(new GridBagLayout());
                     blank.setBackground(BattleGridSquare.LABEL_COLOR);
 
-                    blank.add(new JLabel(String.valueOf(i)), new GridBagConstraints());
+                    blank.add(new JLabel(String.valueOf((char) (((int) 'A') + i - 1))),
+                            new GridBagConstraints());
 
                     container.add(blank);
                 } else { // column numbers
