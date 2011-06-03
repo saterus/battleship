@@ -39,7 +39,7 @@ public final class FiringControllerImpl implements FiringController {
 	   /**
      * The message template to be displayed upon a Ship being hit.
      */
-    private final String hitMessageTemplate = " has hit your ";
+    private final String hitMessageTemplate = " has hit!";
 
 
 	/**
@@ -72,12 +72,12 @@ public final class FiringControllerImpl implements FiringController {
 					+ this.sunkMessageTemplate + t.toString() + "! ";
 
 			LOGGER.info(t.toString() + " has been sunk!");
+			
 		} else if (HitStatus.HIT == outcome) {
-            ShipType t = this.target.shipTypeAt(x, y);
             this.hitMessage = waiting.getActivePlayer().getPlayerName()
-                    + this.hitMessageTemplate + t.toString() + "! ";
+                    + this.hitMessageTemplate;
 
-            LOGGER.info(t.toString() + " has been sunk!");
+            LOGGER.info("Hit!");
         }
 
 		if (!this.target.shipsRemaining()) {
