@@ -14,12 +14,12 @@ public final class FiringControllerImpl implements FiringController {
 	/**
 	 * The grid being shot at.
 	 */
-	private BattleGrid target;
+	private final BattleGrid target;
 
 	/**
 	 * The WaitingController to be used with firing.
 	 */
-	private WaitingController waiting;
+	private final WaitingController waiting;
 
 	/**
 	 * Sets up the controller with the grid to fire upon.
@@ -42,6 +42,16 @@ public final class FiringControllerImpl implements FiringController {
 	@Override
 	public boolean isShootable(int x, int y) {
 		return !this.target.isViewable(x, y);
+	}
+	
+	@Override
+	public BattleGrid getTarget() {
+	    return this.target;
+	}
+	
+	@Override
+	public void endTurn() {
+	    this.waiting.nextScreen();
 	}
 
 }

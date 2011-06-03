@@ -1,5 +1,7 @@
 package controllers;
 
+import models.BattleGrid;
+
 /**
  * A controller for firing for use in battleship. The user of this interface has
  * control over what rules existing regarding shooting.
@@ -36,5 +38,9 @@ public interface FiringController {
 	 *         {@code false} otherwise.
 	 */
 	boolean isShootable(int x, int y);
+	
+	BattleGrid getTarget();
+	
+	void endTurn();
 
 }
