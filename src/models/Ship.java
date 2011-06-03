@@ -13,6 +13,9 @@ package models;
  */
 public interface Ship {
 
+    /** Status returned when a shot has been fired near a Ship. */
+    public enum HitStatus { MISS, HIT, SUNK };
+    
 	/**
 	 * Retrieves the ShipType associated with the Ship.
 	 * 
@@ -32,6 +35,6 @@ public interface Ship {
 	/**
 	 * Registers a hit against the Ship.
 	 */
-	void hit();
+	HitStatus hit();
 
 }

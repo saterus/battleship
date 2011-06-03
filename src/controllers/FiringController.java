@@ -1,6 +1,7 @@
 package controllers;
 
 import models.BattleGrid;
+import models.Ship;
 
 /**
  * A controller for firing for use in battleship. The user of this interface has
@@ -22,9 +23,10 @@ public interface FiringController {
 	 *            the x-coordinate of the registered shot.
 	 * @param y
 	 *            the y-coordinate of the registered shot.
-	 * @return {@code true} if the shot hit a ship, and {@code false} otherwise.
+	 * @return {@code HIT} if the shot hit a Ship, {@code SUNK} if it hit and sunk a ship,
+     * and {@code MISS} otherwise.
 	 */
-	boolean fireShot(int x, int y);
+	Ship.HitStatus fireShot(int x, int y);
 
 	/**
 	 * Determines whether a spot on the grid is able to be shot. A space can be
