@@ -1,5 +1,11 @@
 421 Final Project
 
+To Run Battleship:
+1.	Create a new project in Eclipse using the directories and files in this zip
+	archive.
+2.	Right-click on src > battleship > Battleship.java and select 
+	Run As > Java Application.
+3.	Follow the Game-play Instructions provided below to play the game.
 
 Game-play Instructions:
 I.	Ship Placement

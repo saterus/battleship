@@ -37,13 +37,6 @@ public class PlacementControllerTest {
 		place = new PlacementControllerImpl(wait, grid1);
 	}
 
-	// Ship placement without setting ship type
-	@Test
-	public void shipPlaceNoType() {
-		assertTrue("Ship placement without setting ship type",
-				!place.setShipPos(5, 5));
-	}
-
 	// Good ship placement with ship type
 	@Test
 	public void goodPlaceWithType() {

@@ -38,7 +38,7 @@ public final class ShipTypeSelector extends JPanel {
 	private Map<ShipType, JButton> buttonMap;
 
 	/**
-	 * The initial color of the button.
+	 * The initial color for the button.
 	 */
 	private Color originalButtonColor;
 
