@@ -61,11 +61,17 @@ public final class BattleGridSquare extends JPanel {
      * player's own grid.
      */
     private static final Color  SHIP             = Color.DARK_GRAY;
-    
+
     /**
-     * Color of the active player's grid squares that have been shot and hold no Ship.
+     * Color of the active player's grid squares that have been shot and hold no
+     * Ship.
      */
-    private static final Color  MISS              = Color.YELLOW;
+    private static final Color  MISS             = Color.YELLOW;
+
+    /**
+     * Color of the grid labels. (1-10, A-whatever).
+     */
+    public static final Color   LABEL_COLOR      = Color.WHITE;
 
     /**
      * Constructor that defines the position of the BattleGridSquare to be x,y.
@@ -155,7 +161,7 @@ public final class BattleGridSquare extends JPanel {
      */
     public void setSquareBackground(BattleGrid grid) {
         Color currentColor;
-        
+
         if (grid.getPlayerState()) { // active player owns this grid.
 
             if (grid.isShip(this.x, this.y) && grid.isViewable(this.x, this.y)) {

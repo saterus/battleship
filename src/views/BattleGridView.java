@@ -2,6 +2,8 @@ package views;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.logging.Logger;
 
@@ -11,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import models.BattleGrid;
-import models.Player;
 import controllers.FiringController;
 import controllers.PlacementController;
 
@@ -23,37 +24,37 @@ import controllers.PlacementController;
  */
 public final class BattleGridView extends JPanel {
 
-	/**
-	 * Serial Version ID.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Serial Version ID.
+     */
+    private static final long   serialVersionUID = 1L;
 
-	/**
-	 * A LOGGER for use with the BattleGridView class.
-	 */
-	private static final Logger LOGGER = Logger.getLogger(BattleGridView.class
-			.getName());
+    /**
+     * A LOGGER for use with the BattleGridView class.
+     */
+    private static final Logger LOGGER           = Logger.getLogger(BattleGridView.class
+                                                         .getName());
 
-	/** Size of the grid used by the game. */
-	private final int gridSize;
+    /** Size of the grid used by the game. */
+    private final int           gridSize;
 
-	/** Grid gap size in pixels. */
-	private static final int GRID_GAP = 3;
-	
-	private JPanel container;
+    /** Grid gap size in pixels. */
+    private static final int    GRID_GAP         = 3;
 
-	/**
-	 * Constructor that initializes the BattleGridView with the given
-	 * PlacementController and BattleGrid.
-	 * 
-	 * @param con
-	 *            the PlacementController to be used with the BattleGridView.
-	 * @param grid
-	 *            the BattleGrid to be used by the BattleGridView.
-	 */
-	public BattleGridView(PlacementController con, BattleGrid grid) {
-        this.gridSize = grid.gridSize();
-        
+    private JPanel              container;
+
+    /**
+     * Constructor that initializes the BattleGridView with the given
+     * PlacementController and BattleGrid.
+     * 
+     * @param con
+     *            the PlacementController to be used with the BattleGridView.
+     * @param grid
+     *            the BattleGrid to be used by the BattleGridView.
+     */
+    public BattleGridView(PlacementController con, BattleGrid grid) {
+        this.gridSize = grid.gridSize() + 1;
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -63,32 +64,57 @@ public final class BattleGridView extends JPanel {
         container = new JPanel();
         container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
         this.add(container);
-        
-		for (int i = 0; i < gridSize; i++) {
-			for (int j = 0; j < gridSize; j++) {
-				BattleGridSquare square = new BattleGridSquare(j, i);
-				square.addPlacementClickListener(this, con, grid);
-				container.add(square);
-				square.setSquareBackground(grid);
-			}
-		}
 
-		LOGGER.finer("Created BattleGridView for Placement");
-	}
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
 
-	/**
-	 * Constructor that initializes the BattleGridView with the given
-	 * FiringController.
-	 * 
-	 * @param con
-	 *            the FiringController to be used with the BattleGridView.
-	 */
-	public BattleGridView(FiringController con) {
-		BattleGrid targetGrid = con.getTarget();
-		this.gridSize = targetGrid.gridSize();
-  
+                if (i > 0 && j > 0) { // the grid
+                    BattleGridSquare square = new BattleGridSquare(j - 1, i - 1);
+                    square.addPlacementClickListener(this, con, grid);
+                    container.add(square);
+                    square.setSquareBackground(grid);
+
+                } else if (i == 0 && j == 0) { // blank spot
+                    JPanel blank = new JPanel();
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+                    container.add(blank);
+
+                } else if (j == 0) { // rows
+                    JPanel blank = new JPanel();
+                    blank.setLayout(new GridBagLayout());
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+
+                    blank.add(new JLabel(String.valueOf(i)), new GridBagConstraints());
+
+                    container.add(blank);
+                } else { // column numbers
+                    JPanel blank = new JPanel();
+                    blank.setLayout(new GridBagLayout());
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+
+                    blank.add(new JLabel(String.valueOf(j)), new GridBagConstraints());
+
+                    container.add(blank);
+                }
+            }
+        }
+
+        LOGGER.finer("Created BattleGridView for Placement");
+    }
+
+    /**
+     * Constructor that initializes the BattleGridView with the given
+     * FiringController.
+     * 
+     * @param con
+     *            the FiringController to be used with the BattleGridView.
+     */
+    public BattleGridView(FiringController con) {
+        BattleGrid targetGrid = con.getTarget();
+        this.gridSize = targetGrid.gridSize() + 1;
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        
+
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         this.add(new JLabel(targetGrid.getPlayer().getPlayerName()));
         this.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -97,28 +123,53 @@ public final class BattleGridView extends JPanel {
         container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
         this.add(container);
 
-		for (int i = 0; i < gridSize; i++) {
-			for (int j = 0; j < gridSize; j++) {
-				BattleGridSquare square = new BattleGridSquare(j, i);
-				square.addFiringClickListener(this, con, targetGrid);
-				container.add(square);
-				square.setSquareBackground(targetGrid);
-			}
-		}
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
 
-		LOGGER.finer("Created BattleGridView for Firing");
-	}
+                if (i > 0 && j > 0) { // the grid
+                    BattleGridSquare square = new BattleGridSquare(j - 1, i - 1);
+                    square.addFiringClickListener(this, con, targetGrid);
+                    container.add(square);
+                    square.setSquareBackground(targetGrid);
 
-	/**
-	 * Constructor which initializes the BattleGridView with the given
-	 * BattleGrid.
-	 * 
-	 * @param grid
-	 *            the BattleGrid to be used by the BattleGridView.
-	 */
-	public BattleGridView(BattleGrid grid) {
-		this.gridSize = grid.gridSize();
-		
+                } else if (i == 0 && j == 0) { // blank spot
+                    JPanel blank = new JPanel();
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+                    container.add(blank);
+
+                } else if (j == 0) { // rows
+                    JPanel blank = new JPanel();
+                    blank.setLayout(new GridBagLayout());
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+
+                    blank.add(new JLabel(String.valueOf(i)), new GridBagConstraints());
+
+                    container.add(blank);
+                } else { // column numbers
+                    JPanel blank = new JPanel();
+                    blank.setLayout(new GridBagLayout());
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+
+                    blank.add(new JLabel(String.valueOf(j)), new GridBagConstraints());
+
+                    container.add(blank);
+                }
+            }
+        }
+
+        LOGGER.finer("Created BattleGridView for Firing");
+    }
+
+    /**
+     * Constructor which initializes the BattleGridView with the given
+     * BattleGrid.
+     * 
+     * @param grid
+     *            the BattleGrid to be used by the BattleGridView.
+     */
+    public BattleGridView(BattleGrid grid) {
+        this.gridSize = grid.gridSize() + 1;
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -126,33 +177,59 @@ public final class BattleGridView extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 10)));
 
         container = new JPanel();
-		container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
-		this.add(container);
+        container.setLayout(new GridLayout(gridSize, gridSize, GRID_GAP, GRID_GAP));
+        this.add(container);
 
-		for (int i = 0; i < gridSize; i++) {
-			for (int j = 0; j < gridSize; j++) {
-				BattleGridSquare square = new BattleGridSquare(j, i);
-				container.add(square);
-				square.setSquareBackground(grid);
-			}
-		}
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                if (i > 0 && j > 0) { // the grid
 
-		LOGGER.finer("Created BattleGridView for Viewing");
-	}
+                    BattleGridSquare square = new BattleGridSquare(j - 1, i - 1);
+                    container.add(square);
+                    square.setSquareBackground(grid);
 
-	/**
-	 * Updates the background colors for each square in the grid.
-	 * 
-	 * @param grid
-	 *            the grid to be updated.
-	 */
-	public void redrawSquareBackgrounds(BattleGrid grid) {
-		for (Component square : this.container.getComponents()) {
-			BattleGridSquare sq = (BattleGridSquare) square;
-			sq.setSquareBackground(grid);
-		}
-		LOGGER.finest("Redrawing Square Backgrounds.");
-	}
-	
-	
+                } else if (i == 0 && j == 0) { // blank spot
+                    JPanel blank = new JPanel();
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+                    container.add(blank);
+
+                } else if (j == 0) { // rows
+                    JPanel blank = new JPanel();
+                    blank.setLayout(new GridBagLayout());
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+
+                    blank.add(new JLabel(String.valueOf(i)), new GridBagConstraints());
+
+                    container.add(blank);
+                } else { // column numbers
+                    JPanel blank = new JPanel();
+                    blank.setLayout(new GridBagLayout());
+                    blank.setBackground(BattleGridSquare.LABEL_COLOR);
+
+                    blank.add(new JLabel(String.valueOf(j)), new GridBagConstraints());
+
+                    container.add(blank);
+                }
+            }
+        }
+
+        LOGGER.finer("Created BattleGridView for Viewing");
+    }
+
+    /**
+     * Updates the background colors for each square in the grid.
+     * 
+     * @param grid
+     *            the grid to be updated.
+     */
+    public void redrawSquareBackgrounds(BattleGrid grid) {
+        for (Component square : this.container.getComponents()) {
+            if (square instanceof BattleGridSquare) {
+                BattleGridSquare sq = (BattleGridSquare) square;
+                sq.setSquareBackground(grid);
+            }
+        }
+        LOGGER.finest("Redrawing Square Backgrounds.");
+    }
+
 }
