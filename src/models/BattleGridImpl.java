@@ -76,16 +76,18 @@ public final class BattleGridImpl implements BattleGrid {
     }
 
     @Override
-    public boolean shoot(int x, int y) {
-        boolean didHit = false;
+    public Ship.HitStatus shoot(int x, int y) {
+        Ship.HitStatus shotStatus = Ship.HitStatus.MISS;
+        
         if (gridSpaces[x][y].hasShip() && !gridSpaces[x][y].isVisible()) {
-            didHit = true;
+            Ship s = gridSpaces[x][y].getShip();
+            shotStatus = s.hit();
         }
 
         gridSpaces[x][y].makeVisible();
 
-        LOGGER.fine("Shot at (" + x + "," + y + "). Hit? " + didHit);
-        return didHit;
+        LOGGER.fine("Shot at (" + x + "," + y + "). Hit? " + shotStatus.toString());
+        return shotStatus;
     }
 
     @Override

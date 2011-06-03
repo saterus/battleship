@@ -1,6 +1,7 @@
 package controllers;
 
 import models.BattleGrid;
+import models.Ship;
 
 /**
  * Tracks a target grid owned by the opposing player, upon which all shots are
@@ -35,7 +36,7 @@ public final class FiringControllerImpl implements FiringController {
 	}
 
 	@Override
-	public boolean fireShot(int x, int y) {
+	public Ship.HitStatus fireShot(int x, int y) {
 		return this.target.shoot(x, y);
 	}
 

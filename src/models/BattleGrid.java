@@ -43,9 +43,10 @@ public interface BattleGrid {
 	 *            the x-coordinate of the position to shoot.
 	 * @param y
 	 *            the y-coordinate of the position to shoot.
-	 * @return {@code true} if the shot hit a Ship, and {@code false} otherwise.
+	 * @return {@code HIT} if the shot hit a Ship, {@code SUNK} if it hit and sunk a ship,
+	 * and {@code MISS} otherwise.
 	 */
-	boolean shoot(int x, int y);
+	Ship.HitStatus shoot(int x, int y);
 
 	/**
 	 * Determines whether a grid position is viewable. A grid position is
