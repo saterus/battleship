@@ -34,12 +34,18 @@ public final class FiringControllerImpl implements FiringController {
 	/**
 	 * The message template to be displayed upon a Ship sinking.
 	 */
-	private final String sunkMessageTemplate = " has sunk your ";
+	private final String sunkMessageTemplate = " has SUNK your ";
+	
+	   /**
+     * The message template to be displayed upon a Ship being hit.
+     */
+    private final String hitMessageTemplate = " has hit your ";
+
 
 	/**
 	 * The message to be displayed upon a Ship sinking.
 	 */
-	private String sunkMessage;
+	private String hitMessage;
 
 	/**
 	 * Sets up the controller with the grid to fire upon.
@@ -52,7 +58,7 @@ public final class FiringControllerImpl implements FiringController {
 	public FiringControllerImpl(WaitingController waiting, BattleGrid target) {
 		this.waiting = waiting;
 		this.target = target;
-		this.sunkMessage = null;
+		this.hitMessage = null;
 	}
 
 	@Override
@@ -62,15 +68,21 @@ public final class FiringControllerImpl implements FiringController {
 
 		if (HitStatus.SUNK == outcome) {
 			ShipType t = this.target.shipTypeAt(x, y);
-			this.sunkMessage = waiting.getActivePlayer().getPlayerName()
+			this.hitMessage = waiting.getActivePlayer().getPlayerName()
 					+ this.sunkMessageTemplate + t.toString() + "! ";
 
 			LOGGER.info(t.toString() + " has been sunk!");
-		}
+		} else if (HitStatus.HIT == outcome) {
+            ShipType t = this.target.shipTypeAt(x, y);
+            this.hitMessage = waiting.getActivePlayer().getPlayerName()
+                    + this.hitMessageTemplate + t.toString() + "! ";
+
+            LOGGER.info(t.toString() + " has been sunk!");
+        }
 
 		if (!this.target.shipsRemaining()) {
 			this.waiting.setHasWon(true);
-			this.sunkMessage += waiting.getActivePlayer().getPlayerName()
+			this.hitMessage += waiting.getActivePlayer().getPlayerName()
 					+ " has sunk all your ships and won the game!";
 
 			LOGGER.info(waiting.getActivePlayer().getPlayerName() + " has won!");
@@ -91,8 +103,16 @@ public final class FiringControllerImpl implements FiringController {
 
 	@Override
 	public void endTurn() {
-		String tempMsg = this.sunkMessage;
-		this.sunkMessage = null;
+	    
+//	    Find a better home for this. This doesn't work right here.
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e1) {
+//            LOGGER.severe("FiringView Delay interrupted!");
+//        }
+	    
+		String tempMsg = this.hitMessage;
+		this.hitMessage = null;
 
 		this.waiting.nextScreen(tempMsg);
 	}

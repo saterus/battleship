@@ -141,9 +141,7 @@ public final class BattleGridSquare extends JPanel {
                     LOGGER.info("Fired at (" + x + "," + y + "). Hit?"
                             + shotSuccess.toString());
 
-                    if (HitStatus.MISS != shotSuccess) {
-                        BattleGridSquare.this.setSquareBackground(grid);
-                    }
+                    BattleGridSquare.this.setSquareBackground(grid);
 
                     con.endTurn();
                 } else {
