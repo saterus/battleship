@@ -68,10 +68,10 @@ public final class PlacementControllerImpl implements PlacementController {
         this.waiting = waiting;
         // Initialize set of ShipTypes to place
         shipTypesLeft.add(ShipType.AIRCRAFT_CARRIER);
-        shipTypesLeft.add(ShipType.BATTLESHIP);
-        shipTypesLeft.add(ShipType.DESTROYER);
-        shipTypesLeft.add(ShipType.PATROL_BOAT);
-        shipTypesLeft.add(ShipType.SUBMARINE);
+//        shipTypesLeft.add(ShipType.BATTLESHIP); // TODO: Uncomment after finished testing.
+//        shipTypesLeft.add(ShipType.DESTROYER);
+//        shipTypesLeft.add(ShipType.PATROL_BOAT);
+//        shipTypesLeft.add(ShipType.SUBMARINE);
     }
 
     @Override
