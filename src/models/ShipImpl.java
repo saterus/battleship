@@ -38,7 +38,7 @@ public final class ShipImpl implements Ship {
 	@Override
 	public HitStatus hit() {
 		numHits++;
-		if (type.length() == numHits) {
+		if (type.length() <= numHits) {
 			return HitStatus.SUNK;
 		}
 		return HitStatus.HIT;

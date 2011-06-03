@@ -43,8 +43,8 @@ public interface BattleGrid {
 	 *            the x-coordinate of the position to shoot.
 	 * @param y
 	 *            the y-coordinate of the position to shoot.
-	 * @return {@code HIT} if the shot hit a Ship, {@code SUNK} if it hit and sunk a ship,
-	 * and {@code MISS} otherwise.
+	 * @return {@code HIT} if the shot hit a Ship, {@code SUNK} if it hit and
+	 *         sunk a ship, and {@code MISS} otherwise.
 	 */
 	Ship.HitStatus shoot(int x, int y);
 
@@ -77,11 +77,27 @@ public interface BattleGrid {
 	 */
 	boolean isShip(int x, int y);
 
+	/**
+	 * Retrieves the ShipType at the location x,y.
+	 * 
+	 * @requires isShip(x, y) is true.
+	 * @param x
+	 *            the x-coordinate of the space to check for the ShipType.
+	 * @param y
+	 *            the y-coordinate of the space to check for the ShipType.
+	 * @return the ShipType of the ship located at the location x,y, or null if
+	 *         no Ship is located at x,y.
+	 */
 	ShipType shipTypeAt(int x, int y);
-	
-	/** Are there unsunk ships remaining on the grid? */
+
+	/**
+	 * Checks for remaining, unsunk Ships on the grid.
+	 * 
+	 * @return true if there are unsunk Ships, or false if all Ships have been
+	 *         sunk.
+	 */
 	boolean shipsRemaining();
-	
+
 	/**
 	 * Checks to make sure that the specified coordinate is within the bounds of
 	 * the board.
@@ -102,25 +118,22 @@ public interface BattleGrid {
 	 * @return the dimension of one side of the grid.
 	 */
 	int gridSize();
-	
+
 	/**
-	 * This will set the player as either active or inactive when playing separate turns.
+	 * This will set the player as either active or inactive when playing
+	 * separate turns.
 	 * 
 	 * @ensures The player's state = state
 	 * @param state
-	 * 		The state in which the player will assume, where
-	 * 			{@code true} = Active
-	 * 			{@code false} = Inactive
+	 *            The state in which the player will assume, where {@code true}
+	 *            = Active {@code false} = Inactive
 	 */
 	void setPlayerState(boolean state);
-	
+
 	/**
 	 * Returns whether or not a player is active and taking their turn.
 	 * 
-	 * @return isActive
-	 * 			{@code true} = Active
-	 * 			{@code false} = Inactive
+	 * @return isActive {@code true} = Active {@code false} = Inactive
 	 */
 	boolean getPlayerState();
-
 }
